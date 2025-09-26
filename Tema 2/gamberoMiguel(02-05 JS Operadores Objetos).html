@@ -6,6 +6,39 @@
     <title>Document</title>
 </head>
 <body>
+    <!-- 1. Que hace el operador .? -->
+    <!-- El operador . se usa para acceder a propiedades o metodos de un objeto -->
+
+    <!--2. Ejecuta este código y explicalo:
+        var s = new String('rafa');document.write(s);
+        var longitud = s.length;document.write(longitud);
+        var pos = s.indexOf("fa"); document.write(pos); -->
     
+        <h1><u>Apartado 2</u></h1>
+        <script>
+            var s = new String ("rafa");document.write(s +" "); //Crea la variable s y hace un print eseñandolo
+            var longitud = s.length;document.write(longitud + " "); // Crea la variable longitud el cual lo que se almacena es la longitud de s
+            var pos = s.indexOf("fa"); document.write(pos); // Crea la variable pos el cual saca la posicion la cual empieza la palabra "fa" de "Rafa"
+        </script>
+
+    <!--3. Que hace el operador []?-->
+    <!-- Se usa para:
+        · Acceder a elementos de un array
+        · Acceder a propiedades de un objeto mediante notación por corchetes
+        · Crear arreglos o claves dinámicamente -->
+
+    <!-- 4. Ejecuta estos códigos y explica que hacen: 
+        var arraya =["Santiago","Coruña", "Lugo"];
+        var arrayb={ elem1:"Santiago", elem2:"Coruña", elem3:"Lugo" };
+        document.write(arraya[1]);
+        document.write(arrayb["elem3"]);-->
+    
+        <h1>Aprartado 4</h1>
+        <script>
+            var arraya =["Santiago","Coruña", "Lugo"];
+            var arrayb={ elem1:"Santiago", elem2:"Coruña", elem3:"Lugo" };
+            document.write(arraya[1] + " "); // Accede al segundo elemento del arraya y lo imprime
+            document.write(arrayb["elem3"]); // Accede a la propiedad elem3 del objeto arrayb y lo imprime
+        </script>
 </body>
 </html>
