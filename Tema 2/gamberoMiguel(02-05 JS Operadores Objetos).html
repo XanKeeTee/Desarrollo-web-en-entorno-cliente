@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>gamberoMiguel(02-05 JS Operadores Objetos)</title>
 </head>
 <body>
     <!-- 1. Que hace el operador .? -->
@@ -14,7 +14,7 @@
         var longitud = s.length;document.write(longitud);
         var pos = s.indexOf("fa"); document.write(pos); -->
     
-        <h1><u>Apartado 2</u></h1>
+        <h1>Apartado 2</h1>
         <script>
             var s = new String ("rafa");document.write(s +" "); //Crea la variable s y hace un print eseñandolo
             var longitud = s.length;document.write(longitud + " "); // Crea la variable longitud el cual lo que se almacena es la longitud de s
@@ -39,6 +39,116 @@
             var arrayb={ elem1:"Santiago", elem2:"Coruña", elem3:"Lugo" };
             document.write(arraya[1] + " "); // Accede al segundo elemento del arraya y lo imprime
             document.write(arrayb["elem3"]); // Accede a la propiedad elem3 del objeto arrayb y lo imprime
+        </script>
+    
+    <!--5. que hace el operador { }?-->
+    <!-- Se usa para definir objetos en JavaScript. Permite agrupar propiedades y métodos relacionados en una sola entidad. -->
+
+    <!--6. Ejecuta estos códigos y explica que hacen
+        var arrayb={ elem1:"Santiago", elem2:"Coruña", elem3:"Lugo" };
+        document.write(arrayb["elem3"]); -->
+        <h1>Apartado 6</h1>
+        <script>
+            var arrayb={ elem1:"Santiago", elem2:"Coruña", elem3:"Lugo" };
+            document.write(arrayb["elem3"]); // Crea un objeto llamado arrayb con tres propiedades y luego accede a la propiedad elem3 e imprime su valor
+        </script>
+
+    <!--7. Que hace el operador Delete?-->
+    <!-- El operador delete se usa para eliminar una propiedad de un objeto. -->
+
+    <!--8. crea un ejemplo de delete para eliminar la propiedad elem3-->
+
+    <h1>Apartado 8</h1>
+        <script>
+            var arrayb={ elem1:"Santiago", elem2:"Coruña", elem3:"Lugo" };
+            delete arrayb.elem3; // Elimina la propiedad elem3 del objeto arrayb
+            document.write(arrayb.elem3); // Intenta acceder a la propiedad elem3, pero ya no existe, por lo que devuelve undefined
+        </script>
+
+    <!-- 9. que hace el operador de escape \’ ?-->
+    <!-- El operador de escape \' se usa para incluir una comilla simple dentro de una cadena delimitada por comillas simples sin finalizar la cadena. -->
+
+    <!--10. crea un ejemplo para escribir la cadena literal “<el pajarito “pedro” comia “grillos”>”
+    Ojo a lo mejor debes usar el las entidades <html-->
+
+    <h1>Apartado 10</h1>
+        <script>
+            var cadena = "<el pajarito \"pedro\" comia \"grillos\">";
+            document.write(cadena); // Crea una cadena que incluye comillas dobles dentro de comillas simples usando el operador de escape \"   
+        </script>
+
+    <!--11. que hace el operador instanceof?-->
+    <!-- El operador instanceof se usa para verificar si un objeto es una instancia de una clase o constructor específico. -->
+
+    <!--12. Ejecuta el codigo
+        a = new Array(1,2,3);
+        a instanceof Array; // devolverá true.-->
+    <h1>Apartado 12</h1>
+        <script>
+            var a = new Array(1,2,3);
+            var resultado = a instanceof Array; // Verifica si 'a' es una instancia de Array
+            document.write(resultado); // Imprime true porque 'a' es efectivamente un Array
+        </script>
+
+    <!--13. que hace el operador coma? Operador . Coma operador : instanceof -->
+    <!-- El operador coma (,) se usa para separar múltiples expresiones en una sola línea de código. Evalúa cada expresión de izquierda a derecha y devuelve el valor de la última expresión. -->
+
+    <!--14. Ejecuta este codigo
+        var nombre="juan", direccion="C\ pepep,1", apellidos="lopez Abad", edad="30";
+        Document.write( nombre + "," + apellidos + "," + direccion + "," + edad );-->
+
+    <h1>Apartado 14</h1>
+        <script>
+            var nombre="juan", direccion="C\\ pepep,1", apellidos="lopez Abad", edad="30";
+            document.write( nombre + "," + apellidos + "," + direccion + "," + edad ); // Crea varias variables y las imprime en una sola línea separadas por comas
+        </script>
+
+    <!--15. que hace el operador :?-->
+    <!-- El operador ? es el operador ternario que se usa para evaluar una condición y devolver uno de dos valores según si la condición es verdadera o falsa. La sintaxis es condición ? valorSiVerdadero : valorSiFalso. -->
+
+    <!--    16. Ejecuta este codigo
+        var a =10;
+        var b = 15;
+        var opcion= b>a ? "B es mayor que A": "A es mayor que B";
+        document.write( "opcion "+opcion);-->
+    <h1>Apartado 16</h1>
+        <script>
+            var a =10;
+            var b = 15;
+            var opcion= b>a ? "B es mayor que A": "A es mayor que B";
+            document.write( "opcion "+opcion); // Compara las variables a y b usando el operador ternario y asigna un mensaje a la variable opcion según el resultado de la comparación, luego lo imprime
+        </script>
+
+    <!-- 17. Ejecuta este codigo
+        var a =confirm("Estas de Acuerdo");
+        var opcion= a ? "Acuerdo": "En Desacuerdo";
+        document.write( "opcion "+opcion); -->
+    <h1>Apartado 17</h1>
+        <script>
+            var a =confirm("Estas de Acuerdo");
+            var opcion= a ? "Acuerdo": "En Desacuerdo";
+            document.write( "opcion "+opcion); // Muestra un cuadro de confirmación y asigna un mensaje a la variable opcion según si el usuario acepta o cancela, luego lo imprime
+        </script>
+
+    <!--18. que hace el operador typeof?-->
+    <!-- El operador typeof se usa para obtener una cadena que indica el tipo de una variable o expresión. -->
+    <!--19. Ejecuta este codigo
+        var a ="hola" , b=34, c=3.1e3 d = 34;
+        var at =typeof(a) ;
+        var bt =typeof(b) ;
+        var ct =typeof(c) ;
+        document.write( " tipo de "+ a: + " es "+at);
+        document.write( " tipo de "+b: + " es "+bt);
+        document.write( " tipo de "+ c: + " es "+ct);-->
+    <h1>Apartado 19</h1>
+        <script>            
+            var a ="hola" , b=34, c=3.1e3, d = 34;
+            var at =typeof(a) ;
+            var bt =typeof(b) ;
+            var ct =typeof(c) ;
+            document.write( " tipo de "+ a + " es "+at + "<br>");
+            document.write( " tipo de "+b + " es "+bt + "<br>");
+            document.write( " tipo de "+ c + " es "+ct); // Crea varias variables de diferentes tipos y usa typeof para obtener y imprimir el tipo de cada variable
         </script>
 </body>
 </html>
