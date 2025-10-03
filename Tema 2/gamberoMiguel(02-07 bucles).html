@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <title>Practica 02-01 DWEC Fundamentos de JS </title>
+    <meta charset="UTF-8">
+    <style>
+        .img1 {
+            width: 900px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Practica 02-07 </h1>
+        <h1>Nombre: Miguel Angel Gambero </h1>
+    </header>
+    <h1> Ejemplos</h1>
+    <script>
+        for (var i = 0; i < 10; i++) { document.write(i + "<br>") }
+
+        var i = 0;
+        while (i < 0) {
+            document.write(i + "-2<br>")
+            i++
+        }
+        var i = 0;
+        do {
+            document.write(i + "-3<br>")
+            i++
+        } while (i < 0)
+    </script>
+
+    <h1> Ejemplos</h1>
+    <br><br>1. Ejercicio 1 Escribir un programa que pida al usuario una palabra y la muestre por pantalla 10 veces con
+    for
+
+    <button onclick="mostrarPalabra()">Escribir palabra</button>
+    <div id="resultado1"></div>
+    <script>
+        function mostrarPalabra(){
+            let palabra = prompt("Dime una palabra");
+            let salida = "";
+
+            for (var i = 0; i < 10; i++) {
+                salida += (i + 1) + ". " + palabra + "<br>";
+            }
+            document.getElementById("resultado1").innerHTML = salida;
+        }
+    </script>
+
+    <br><br>2. Ejercicio 2 Escribir un programa que pregunte al usuario su edad y muestre por pantalla todos los años
+    que ha cumplido (desde 1 hasta su edad). (while)
+
+    <button onclick="ejercicio2()">Escribir edad</button>
+    <div id="resultado2"></div>
+    <script>
+        function ejercicio2(){
+            let edad = prompt("Digame su edad: ");
+            let salida = "";
+            contador = 1;
+
+            while(contador <= edad){
+                salida += contador + " ";
+                contador++;
+            }
+
+            document.getElementById("resultado2").innerHTML = salida;
+        }
+    </script>
+
+    <br><br>3. Ejercicio 3 Escribir un programa que pida al usuario un número entero positivo y muestre por pantalla
+    todos los números impares desde 1 hasta ese número separados por comas.
+
+    <button onclick="ejercicio3()">Escribir numero</button>
+    <div id="resultado3"></div>
+    <script>
+        function ejercicio3(){
+            let numero = prompt("Digame un numero: ");
+            let salida = "";
+            
+            for (var i = 1 ; i < numero ; i++ ){
+                if(i%2!=0){
+                    salida += i + ", "
+                }
+            }
+            document.getElementById("resultado3").innerHTML = salida;
+        }
+    </script>
+
+    <br><br>4. Ejercicio 4 Escribir un programa que pida al usuario un número entero positivo y muestre por pantalla la
+    cuenta atrás desde ese número hasta cero separados por comas.
+
+    <button onclick="ejercicio4()">Escribir numero</button>
+    <div id="resultado4"></div>
+    <script>
+        function ejercicio4(){
+            let numero = prompt("Digame un numero: ");
+            let salida = "";
+            
+            for (var i = numero ; i > 0  ; i-- ){
+                salida += i + " ,";
+            }
+            document.getElementById("resultado4").innerHTML = salida;
+        }
+    </script>
+
+    <br><br>5. Ejercicio 5 Escribir un programa que pregunte al usuario una cantidad a invertir, el interés anual y el
+    número de años, y muestre por pantalla el capital obtenido en la inversión cada año que dura la inversión.
+
+    <button onclick="ejercicio5()">Calcular inversión</button>
+    <div id="resultado5"></div>
+
+    <script>
+        function ejercicio5() {
+
+        let cantidad = parseFloat(prompt("Introduce la cantidad a invertir:"));
+        let interes = parseFloat(prompt("Introduce el interés anual (en %):"));
+        let anios = parseInt(prompt("Introduce el número de años:"));
+
+
+        let salida = "<h3>Resultado de la inversión:</h3><ol>";
+
+        for (let i = 1; i <= anios; i++) {
+            let capital = cantidad * Math.pow(1 + interes / 100, i);
+            salida += "<li>Año " + i + ": " + capital.toFixed(2) + " €</li>";
+        }
+
+        salida += "</ol>";
+
+        document.getElementById("resultado5").innerHTML = salida;
+    }
+    </script>
+
+    <br><br>6. Ejercicio 6 Escribir un programa que pida al usuario un número entero y muestre por pantalla un triángulo
+    rectángulo como el de más abajo, de altura el número introducido.
+    <br>*
+    <br>**
+    <br>***
+    <br>****
+    <br>*****
+
+    <button onclick="ejercicio6()">Escribir numero</button>
+    <div id="resultado6"></div>
+    <script>
+        function ejercicio6(){
+            let numero = prompt("Dime un numero");
+            let salida ="";
+
+            for(let i = 1 ; i <= numero ; i++){
+                salida += "*".repeat(i)+"<br>";
+            }
+            document.getElementById("resultado6").innerHTML = salida;
+        }
+    </script>
+
+    <br><br>7. Ejercicio 7 Escribir un programa que muestre por pantalla la tabla de multiplicar del 1 al 10 <br>
+    
+    <div id="resultado7"></div>
+
+    <script>
+        let salida = "<h3>Tabla de multiplicar</h3>";
+    for(var i = 1 ; i < 10 ; i++){
+        salida += "Tabla del " + i + ": ";
+        for(var j = 1 ; j < 10 ; j++){
+            salida += (i*j + " ");
+        }
+        salida += "<br>";
+        document.getElementById("resultado7").innerHTML = salida;
+    }
+    </script>
+
+    <br><br>8. Ejercicio 8 Escribir un programa que pida al usuario un número entero y muestre por pantalla un triángulo
+    rectángulo como el de más abajo.
+    <br>1
+    <br>3 1
+    <br>5 3 1
+    <br>7 5 3 1
+    <br>9 7 5 3 1
+
+    <button onclick="ejercicio8()">Escribir numero</button>
+    <div id="resultado8"></div>
+    <script>
+        function ejercicio8(){
+            let filas = parseInt(prompt("Introduce el número de filas del triángulo:"));
+            let salida = "";
+
+            for (let i = 1; i <= filas; i++) {
+                let numeros = [];
+                let numero = 2 * i - 1;
+
+            while (numero > 0) {
+                numeros.push(numero);
+                numero -= 2;
+            }
+
+            salida += numeros.join(" ") + "<br>";
+            }
+
+            document.getElementById("resultado8").innerHTML = salida;
+        }
+    </script>
+
+    <br><br>9. Ejercicio 9 Escribir un programa que almacene la cadena de caracteres contraseña en una variable,
+    pregunte al usuario por la contraseña hasta que introduzca la contraseña correcta.
+    <br><br>10. Ejercicio 10 Escribir un programa que pida al usuario un número entero y muestre por pantalla si es un
+    número primo o no.
+    <br><br>11. Ejercicio 11 Escribir un programa que pida al usuario una palabra y luego muestre por pantalla una a una
+    las letras de la palabra introducida empezando por la última.
+    <br><br>12. Ejercicio 12 Escribir un programa en el que se pregunte al usuario por una frase y una letra, y muestre
+    por pantalla el número de veces que aparece la letra en la frase.
+    <br><br>13. Ejercicio 13 Escribir un programa que muestre el eco de todo lo que el usuario introduzca hasta que el
+    usuario escriba “salir” que terminará.
+    <br><br>14. Ejercicio 14 Escribir un programa que pregunte al usuario una cantidad a pedir, el interés anual y el
+    número de años en el que lo amortizara, y muestre por pantalla las cuotas pagadas durante cada años suponiendo que
+    actualizan los intereses cada año.
+
+</body>
+
+</html>
