@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <header>
+      <h1>Practica 02-06</h1>
+      <h1>Nombre: Miguel Angel Gambero</h1>
+    </header>
+
+    <h4>1. copia el siguiente código y ejecutalo</h4>
+    <html>
+      <head> </head>
+      <body>
+        <script language="JavaScript">
+          /*var nombre;
+          var edad;
+          nombre = prompt("Ingrese su nombre:", "");
+          edad = prompt("Ingrese su edad:", "");
+          document.write("Hola ");
+          document.write(nombre);
+          document.write(" asi que tienes ");
+          document.write(edad);
+          document.write(" años");*/
+        </script>
+      </body>
+    </html>
+
+  <h4>2. crea un programa que lea una entrada con prompt y la escriba en negrita y h1</h4>
+  <button onclick="ejercicio2()">Ejercicio 2</button>
+    <div id="resultado2"></div>
+  <script>
+    function ejercicio2(){
+      const entrada = prompt("Escriba un texto:");
+      document.getElementById("resultado2").innerHTML = `<h1><strong>${entrada}</strong></h1>`;
+    }
+  </script>
+
+  <h4>3. crea un programa que lea tu fecha de nacimiento y te diga si eres menor de edad (&lt;18)</h4>
+  <button onclick="ejercicio3()">Ejercicio 3</button>
+  <div id="resultado3"></div>
+  <script>
+    function ejercicio3(){
+      const año = parseInt(prompt('Introduce tu año de nacimiento:'));
+      const ahora = new Date().getFullYear();
+      const edad = ahora - año;
+      document.getElementById('resultado3').innerHTML = `<h1><strong>${edad < 18 ? 'Eres menor de edad' : 'Eres mayor de edad'}</strong></h1>`;
+    }
+  </script>
+
+  <h4>4. crea un programa que lea tu fecha de nacimiento y te diga si eres menor de edad (&lt;18) o en edad activa (&gt;=18)</h4>
+  <button onclick="ejercicio4()">Ejercicio 4</button>
+  <div id="resultado4"></div>
+  <script>
+    function ejercicio4(){
+      const año = parseInt(prompt('Introduce tu año de nacimiento:'));
+      const edad = new Date().getFullYear() - año;
+      document.getElementById('resultado4').innerHTML = `<h1><strong>${edad < 18 ? 'Menor de edad' : 'En edad activa'}</strong></h1>`;
+    }
+  </script>
+
+  <h4>5. crea un programa que lea tu fecha de nacimiento y te diga si eres menor de edad (&lt;18), en edad activa (&gt;=18) o jubilado (&gt;67)</h4>
+  <button onclick="ejercicio5()">Ejercicio 5</button>
+  <div id="resultado5"></div>
+  <script>
+    function ejercicio5(){
+      const año = parseInt(prompt('Introduce tu año de nacimiento:'));
+      const edad = new Date().getFullYear() - año;
+      const estado = edad < 18 ? 'Menor de edad' : (edad > 67 ? 'Jubilado' : 'En edad activa');
+      document.getElementById('resultado5').innerHTML = `<h1><strong>${estado}</strong></h1>`;
+    }
+  </script>
+
+  <h4>6. crea un programa que lea el año que es y te diga si es bisiesto o no (ayuda: modulo 4 de el numero es 0)</h4>
+  <button onclick="ejercicio6()">Ejercicio 6</button>
+  <div id="resultado6"></div>
+  <script>
+    function ejercicio6(){
+      const año = parseInt(prompt('Introduce un año:'));
+      const es = (año % 400 === 0) || (año % 4 === 0 && año % 100 !== 0);
+      document.getElementById('resultado6').innerHTML = `<h1><strong>${es ? 'Bisiesto' : 'No bisiesto'}</strong></h1>`;
+    }
+  </script>
+
+  <h4>7. crea un programa que leyendo la variable window.location.href y sacando sus primeros 4 valores substring(inicio,fin) decida si es una pagina local o remota.</h4>
+  <button onclick="ejercicio7()">Ejercicio 7</button>
+  <div id="resultado7"></div>
+  <script>
+    function ejercicio7(){
+      const s = window.location.href.substring(0,4);
+      const tipo = s.toLowerCase() === 'file' ? 'Local' : 'Remota';
+      document.getElementById('resultado7').innerHTML = `<h1><strong>Inicio: ${s} → ${tipo}</strong></h1>`;
+    }
+  </script>
+
+  <h4>8. Solicitar al usuario un número de cliente. Si el número es el 1000, imprimir "Ganaste un premio".</h4>
+  <button onclick="ejercicio8()">Ejercicio 8</button>
+  <div id="resultado8"></div>
+  <script>
+    function ejercicio8(){
+      const n = prompt('Número de cliente:');
+      document.getElementById('resultado8').innerHTML = `<h1><strong>${n == 1000 ? 'Ganaste un premio' : 'No hay premio'}</strong></h1>`;
+    }
+  </script>
+
+  <h4>9. Solicitar al usuario que ingrese dos números y mostrar cuál de los dos es menor. No considerar el caso en que ambos números son iguales.</h4>
+  <button onclick="ejercicio9()">Ejercicio 9</button>
+  <div id="resultado9"></div>
+  <script>
+    function ejercicio9(){
+      const a = parseFloat(prompt('Número A:'));
+      const b = parseFloat(prompt('Número B:'));
+      const menor = a < b ? a : b;
+      document.getElementById('resultado9').innerHTML = `<h1><strong>Menor: ${menor}</strong></h1>`;
+    }
+  </script>
+
+  <h4>10. Solicitar al usuario que ingrese dos números y mostrar cuál de los dos es menor. Considerar el caso en que ambos números son iguales.</h4>
+  <button onclick="ejercicio10()">Ejercicio 10</button>
+  <div id="resultado10"></div>
+  <script>
+    function ejercicio10(){
+      const a = parseFloat(prompt('Número A:'));
+      const b = parseFloat(prompt('Número B:'));
+      let res = '';
+      if (a === b) res = 'Iguales'; else res = (a < b ? `Menor: ${a}` : `Menor: ${b}`);
+      document.getElementById('resultado10').innerHTML = `<h1><strong>${res}</strong></h1>`;
+    }
+  </script>
+
+  <h4>11. Requerir al usuario que ingrese un día de la semana e imprimir un mensaje si es lunes, otro mensaje diferente si es viernes, otro mensaje diferente si es sábado o domingo. Si el día ingresado no es ninguno de esos, imprimir otro mensaje.</h4>
+  <button onclick="ejercicio11()">Ejercicio 11</button>
+  <div id="resultado11"></div>
+  <script>
+    function ejercicio11(){
+      const d = prompt('Día de la semana:').toLowerCase();
+      let msg = '';
+      if (d === 'lunes') msg = 'Es lunes';
+      else if (d === 'viernes') msg = 'Es viernes';
+      else if (d === 'sábado' || d === 'sabado' || d === 'domingo') msg = 'Fin de semana';
+      else msg = 'Día distinto';
+      document.getElementById('resultado11').innerHTML = `<h1><strong>${msg}</strong></h1>`;
+    }
+  </script>
+
+  <h4>12. Escribir un programa que, dado un número entero, muestre su valor absoluto. Nota: para los números positivos su valor absoluto es igual al número; para los negativos, su valor absoluto es el número multiplicado por -1.</h4>
+  <button onclick="ejercicio12()">Ejercicio 12</button>
+  <div id="resultado12"></div>
+  <script>
+    function ejercicio12(){
+      const n = parseFloat(prompt('Introduce un número entero:'));
+      document.getElementById('resultado12').innerHTML = `<h1><strong>Valor absoluto: ${Math.abs(n)}</strong></h1>`;
+    }
+  </script>
+
+  <h4>13. Solicitar al usuario que ingrese los nombres de dos personas. Imprimir “coincidencia” si los nombres de ambas personas comienzan con la misma letra o si terminan con la misma letra. Si no es así, imprimir “no hay coincidencia”.</h4>
+  <button onclick="ejercicio13()">Ejercicio 13</button>
+  <div id="resultado13"></div>
+  <script>
+    function ejercicio13(){
+      const a = prompt('Nombre A:');
+      const b = prompt('Nombre B:');
+      const igual = (a[0].toLowerCase() === b[0].toLowerCase()) || (a.slice(-1).toLowerCase() === b.slice(-1).toLowerCase());
+      document.getElementById('resultado13').innerHTML = `<h1><strong>${igual ? 'coincidencia' : 'no hay coincidencia'}</strong></h1>`;
+    }
+  </script>
+
+  <h4>14. Crear un programa que permita al usuario elegir un candidato por el cual votar: candidato A (rojo), candidato B (verde), candidato C (azul). Imprimir el partido correspondiente o “Opción errónea”.</h4>
+  <button onclick="ejercicio14()">Ejercicio 14</button>
+  <div id="resultado14"></div>
+  <script>
+    function ejercicio14(){
+      const opt = prompt('Elige A, B o C:').toUpperCase();
+      let res = '';
+      if (opt === 'A') res = 'Usted ha votado por el partido rojo';
+      else if (opt === 'B') res = 'Usted ha votado por el partido verde';
+      else if (opt === 'C') res = 'Usted ha votado por el partido azul';
+      else res = 'Opción errónea';
+      document.getElementById('resultado14').innerHTML = `<h1><strong>${res}</strong></h1>`;
+    }
+  </script>
+
+  <h4>15. Escribir un programa que solicite al usuario una letra y, si es una vocal, muestre el mensaje “es vocal”. Validar que el usuario ingrese sólo un carácter.</h4>
+  <button onclick="ejercicio15()">Ejercicio 15</button>
+  <div id="resultado15"></div>
+  <script>
+    function ejercicio15(){
+      const c = prompt('Introduce una letra:');
+      if (c.length !== 1) document.getElementById('resultado15').innerHTML = `<h1><strong>Introduzca un solo carácter</strong></h1>`;
+      else {
+        const v = 'aeiouAEIOU';
+        document.getElementById('resultado15').innerHTML = `<h1><strong>${v.includes(c) ? 'es vocal' : 'no es vocal'}</strong></h1>`;
+      }
+    }
+  </script>
+
+  <h4>16. Hacer un programa que permita saber si un año es bisiesto. (Divisible por 4 y no por 100, excepto si también es divisible por 400.)</h4>
+  <button onclick="ejercicio16()">Ejercicio 16</button>
+  <div id="resultado16"></div>
+  <script>
+    function ejercicio16(){
+      const año = parseInt(prompt('Introduce un año:'));
+      const es = (año % 400 === 0) || (año % 4 === 0 && año % 100 !== 0);
+      document.getElementById('resultado16').innerHTML = `<h1><strong>${es ? 'Bisiesto' : 'No bisiesto'}</strong></h1>`;
+    }
+  </script>
+
+  <h4>17. Hacer el ejercicio 14 usando switch.</h4>
+  <button onclick="ejercicio17()">Ejercicio 17</button>
+  <div id="resultado17"></div>
+  <script>
+    function ejercicio17(){
+      const opt = prompt('Elige A, B o C:').toUpperCase();
+      let res = '';
+      switch(opt){
+        case 'A': res = 'Usted ha votado por el partido rojo'; break;
+        case 'B': res = 'Usted ha votado por el partido verde'; break;
+        case 'C': res = 'Usted ha votado por el partido azul'; break;
+        default: res = 'Opción errónea';
+      }
+      document.getElementById('resultado17').innerHTML = `<h1><strong>${res}</strong></h1>`;
+    }
+  </script>
+
+  <h4>18. Pide un número y muestra si es par o impar usando el operador ternario.</h4>
+  <button onclick="ejercicio18()">Ejercicio 18</button>
+  <div id="resultado18"></div>
+  <script>
+    function ejercicio18(){
+      const n = parseInt(prompt('Introduce un número:'));
+      const r = (n % 2 === 0) ? 'Par' : 'Impar';
+      document.getElementById('resultado18').innerHTML = `<h1><strong>${r}</strong></h1>`;
+    }
+  </script>
+
+  <h4>19. Verifica si una persona puede votar (mayor o igual a 18 años) usando el operador ternario.</h4>
+  <button onclick="ejercicio19()">Ejercicio 19</button>
+  <div id="resultado19"></div>
+  <script>
+    function ejercicio19(){
+      const edad = parseInt(prompt('Introduce tu edad:'));
+      document.getElementById('resultado19').innerHTML = `<h1><strong>${edad >= 18 ? 'Puede votar' : 'No puede votar'}</strong></h1>`;
+    }
+  </script>
+
+  <h4>20. Dado dos números, muestra cuál es mayor utilizando el operador ternario.</h4>
+  <button onclick="ejercicio20()">Ejercicio 20</button>
+  <div id="resultado20"></div>
+  <script>
+    function ejercicio20(){
+      const a = parseFloat(prompt('Número A:'));
+      const b = parseFloat(prompt('Número B:'));
+      const mayor = (a > b) ? a : b;
+      document.getElementById('resultado20').innerHTML = `<h1><strong>Mayor: ${mayor}</strong></h1>`;
+    }
+  </script>
+
+  <h4>21. Clasificar una nota usando if.</h4>
+  <button onclick="ejercicio21()">Ejercicio 21</button>
+  <div id="resultado21"></div>
+  <script>
+    function ejercicio21(){
+      const n = parseFloat(prompt('Introduce la nota (0-10):'));
+      let res = '';
+      if (n < 5) res = 'Insuficiente';
+      else if (n < 7) res = 'Suficiente';
+      else if (n < 9) res = 'Notable';
+      else res = 'Sobresaliente';
+      document.getElementById('resultado21').innerHTML = `<h1><strong>${res}</strong></h1>`;
+    }
+  </script>
+
+  <h4>22. Clasifica una nota numérica del 0 al 10 en: 0-4 → "Insuficiente", 5-6 → "Suficiente", 7-8 → "Notable", 9-10 → "Sobresaliente".</h4>
+  <button onclick="ejercicio22()">Ejercicio 22</button>
+  <div id="resultado22"></div>
+  <script>
+    function ejercicio22(){
+      const n = parseInt(prompt('Introduce la nota (0-10):'));
+      let res = '';
+      if (n <= 4) res = 'Insuficiente';
+      else if (n <= 6) res = 'Suficiente';
+      else if (n <= 8) res = 'Notable';
+      else res = 'Sobresaliente';
+      document.getElementById('resultado22').innerHTML = `<h1><strong>${res}</strong></h1>`;
+    }
+  </script>
+
+  <h4>23. Indica si un número ingresado es positivo, negativo o cero.</h4>
+  <button onclick="ejercicio23()">Ejercicio 23</button>
+  <div id="resultado23"></div>
+  <script>
+    function ejercicio23(){
+      const n = parseFloat(prompt('Introduce un número:'));
+      const res = n > 0 ? 'Positivo' : (n < 0 ? 'Negativo' : 'Cero');
+      document.getElementById('resultado23').innerHTML = `<h1><strong>${res}</strong></h1>`;
+    }
+  </script>
+
+  <h4>24. Validar contraseña: verifica si una contraseña ingresada es igual a "admin123" y muestra un mensaje de acceso concedido o denegado.</h4>
+  <button onclick="ejercicio24()">Ejercicio 24</button>
+  <div id="resultado24"></div>
+  <script>
+    function ejercicio24(){
+      const p = prompt('Introduce la contraseña:');
+      document.getElementById('resultado24').innerHTML = `<h1><strong>${p === 'admin123' ? 'Acceso concedido' : 'Acceso denegado'}</strong></h1>`;
+    }
+  </script>
+
+  <h4>25. Muestra el nombre del día de la semana correspondiente a un número del 1 al 7 usando switch.</h4>
+  <button onclick="ejercicio25()">Ejercicio 25</button>
+  <div id="resultado25"></div>
+  <script>
+    function ejercicio25(){
+      const n = parseInt(prompt('Número (1-7):'));
+      let d = '';
+      switch(n){
+        case 1: d='Lunes'; break;
+        case 2: d='Martes'; break;
+        case 3: d='Miércoles'; break;
+        case 4: d='Jueves'; break;
+        case 5: d='Viernes'; break;
+        case 6: d='Sábado'; break;
+        case 7: d='Domingo'; break;
+        default: d='Número fuera de rango';
+      }
+      document.getElementById('resultado25').innerHTML = `<h1><strong>${d}</strong></h1>`;
+    }
+  </script>
+
+  <h4>26. Crea una calculadora básica: dado dos números y una operación (+, -, *, /), muestra el resultado usando switch.</h4>
+  <button onclick="ejercicio26()">Ejercicio 26</button>
+  <div id="resultado26"></div>
+  <script>
+    function ejercicio26(){
+      const a = parseFloat(prompt('Número A:'));
+      const b = parseFloat(prompt('Número B:'));
+      const op = prompt('Operación (+,-,*,/):');
+      let res = '';
+      switch(op){
+        case '+': res = a + b; break;
+        case '-': res = a - b; break;
+        case '*': res = a * b; break;
+        case '/': res = b !== 0 ? a / b : 'División por cero'; break;
+        default: res = 'Operación desconocida';
+      }
+      document.getElementById('resultado26').innerHTML = `<h1><strong>${res}</strong></h1>`;
+    }
+  </script>
+
+  <h4>27. Crea un semáforo: dado un color (rojo, amarillo, verde), muestra la acción correspondiente: "Detente", "Precaución" o "Avanza".</h4>
+  <button onclick="ejercicio27()">Ejercicio 27</button>
+  <div id="resultado27"></div>
+  <script>
+    function ejercicio27(){
+      const c = prompt('Color (rojo, amarillo, verde):').toLowerCase();
+      let r = '';
+      if (c === 'rojo') r = 'Detente';
+      else if (c === 'amarillo') r = 'Precaución';
+      else if (c === 'verde') r = 'Avanza';
+      else r = 'Color desconocido';
+      document.getElementById('resultado27').innerHTML = `<h1><strong>${r}</strong></h1>`;
+    }
+  </script>
+  </body>
+</html>
