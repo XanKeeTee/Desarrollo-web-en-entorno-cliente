@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="MobileOptimized" content="320" />
+    <meta
+      name="viewport"
+      content="width=device-width, target-densitydpi=160dpi, initial-scale=1"
+    />
+  </head>
+
+  <body>
+    <h1>Nombre:</h1>
+    <h1>Fecha:</h1>
+    <h2>Strings Ejemplos</h2>
+    <script language="JavaScript">
+      document.write("<h3>Ejemplo length charAt charCodeAt </h3> ");
+      //var a = prompt("dime algo Primooooo");
+      var a = "cadena Ejemplo ";
+      document.write(a + " tiene un tamaño  " + a.length);
+      document.write("<br>");
+      document.write(a + " el caracter 3 es  " + a.charAt(3));
+      document.write("<br>");
+      document.write(a + " el caracter 3 es  " + a.charCodeAt(3));
+
+      document.write(
+        "<h3>Ejemplo concat fromCharCode indexOf  lastIndexOf </h3> "
+      );
+      document.write("<br>");
+      document.write(a.concat("-", a, "-->", a));
+      document.write("<br>");
+      document.write(a.concat("-", a, "-->", a));
+      document.write("<br>");
+      document.write("el numero 101 es " + String.fromCharCode(101));
+      document.write("<br>");
+      document.write(
+        "primera ocurrencia de e en  " +
+          a +
+          "esta en la posicion: " +
+          a.indexOf("e")
+      );
+      document.write("<br>");
+      document.write(
+        "ultima ocurrencia de e en  " +
+          a +
+          "esta en la posicion: " +
+          a.lastIndexOf("e")
+      );
+      document.write("<br>");
+      document.write("<h3>Ejemplo match replace  replaceAll  </h3> ");
+      var b = "cadena Ejemplo es una ejemplo de cadena de caracteres";
+      var matchb = b.match("eje");
+      document.write(matchb);
+      document.write("<br>");
+      var c = "cadena ejemplo es una ejemplo de cadena de caracteres";
+      document.write(c.replace("e", "E"));
+      document.write("<br>");
+      document.write(c.replaceAll("e", "E"));
+      document.write("<br>");
+
+      document.write("<h3>Ejemplo search slice  split  </h3> ");
+      var d = "cadena ejemplo es una ejemplo de cadena de caracteres";
+      document.write("una esta en la posicion " + d.search("una"));
+      document.write("<br>");
+      var d =
+        "cadena ejemplo siete es una ejemplo de cadena de ocho caracteres";
+      var inicio = d.search("siete") + "siete".length;
+      var fin = d.search("ocho");
+      document.write("entre siete y ocho hay :" + d.slice(inicio, fin));
+      document.write("<br>");
+
+      var d =
+        "cadena ejemplo siete es una ejemplo de cadena de ocho caracteres";
+      var arrayd = d.split(" ");
+      document.write(" la tercera palabra seria :" + arrayd[2]);
+      document.write("<h3>Ejemplo substring substr     </h3> ");
+      var d =
+        "cadena ejemplo siete es una ejemplo de cadena de ocho caracteres";
+      document.write(
+        " a partir del caracter 10 los 15 siguiente caracteres son :" +
+          d.substring(10, 15)
+      );
+      document.write("<br>");
+      document.write(
+        " a partir del caracter 10 los 15 siguiente caracteres son :" +
+          d.substr(10, 15)
+      );
+      document.write("<h3>Ejemplo toUpperCase toLowerCase     </h3> ");
+      var d =
+        "cadena ejemplo siete es una ejemplo de cadena de ocho caracteres";
+      document.write("<br>");
+      document.write(" En mayusculas:" + d.toUpperCase());
+      document.write("<br>");
+      document.write(" En minusc:" + d.toLowerCase());
+    </script>
+  <br>
+
+    <h1>Strings Ejecicios</h1>
+    <br /><br />
+    1. Toma una entrada con window.prompt() y muestra su tamaño
+
+    <button onclick="ejercicio1()">Ejercicio 1</button>
+    <div id="resultado1"></div>
+
+    <script>
+      function ejercicio1() {
+        var entrada = prompt("Introduce una cadena:");
+        var tamaño = entrada.length;
+        document.getElementById("resultado1").innerHTML =
+          "El tamaño de la cadena es: " + tamaño;
+      }
+    </script>
+  <br>
+    <br />
+    2.Toma una entrada con window.prompt() y nos muestre el carácter que esta en
+    la mitad con charAt()
+    
+    <button onclick="ejercicio2()">Ejercicio 2</button>
+    <div id="resultado2"></div>
+    <script>
+      function ejercicio2(){
+        var entrada = prompt("Introduce una cadena: ");
+        var caracterEnmedio = entrada.charAt(entrada.length/2);
+        document.getElementById("resultado2").innerHTML = 
+          "El caracter que estan en mitad de " + entrada + " es " + caracterEnmedio ;
+      }
+    </script>
+  <br>
+    <br />
+    
+    3. Modifica el anterior para que muestre también su código Unicode
+    
+    <button onclick="ejercicio3()">Ejercicio 3</button>
+    <div id="resultado3"></div>
+    <script>
+      function ejercicio3(){
+        var entrada = prompt("Introduce una cadena: ");
+        var caracterEnmedio = entrada.charAt(entrada.length/2);
+        var codigoUnicode = entrada.charCodeAt(entrada.length/2);
+        document.getElementById("resultado3").innerHTML = 
+          "El caracter que estan en mitad de " + entrada + " es " + caracterEnmedio + " y su codigo unicode es " + codigoUnicode ;
+      }
+    </script>
+  <br>
+    <br>
+    4. Toma dos entradas con window.prompt() y unelas 
+
+    <button onclick="ejercicio4()">Ejercicio 4</button>
+    <div id="resultado4"></div>
+    <script>
+      function ejercicio4(){
+        var entrada1 = prompt("Dime una palabra: ");
+        var entrada2 = prompt("Dime otra palabra: ");
+        var entradasUnidas = entrada1.concat(entrada2);
+        document.getElementById("resultado4").innerHTML = entradasUnidas;
+      }
+    </script>
+  <br>
+    <br>
+
+    5.Toma una numero (si no es un numero da error) y muestra su carácter unicode
+    asociado. FromCharCode().
+    
+    <button onclick="ejercicio5()">Ejercicio 5</button>
+    <div id="resultado5"></div>
+    <script>
+      function ejercicio5(){
+        var entrada = prompt("Dime un numero: ");
+        if (isNaN(entrada)) {
+          document.getElementById("resultado5").innerHTML = "Error, no es un numero";
+        } else {
+          var caracterUnicode = String.fromCharCode(entrada);
+          document.getElementById("resultado5").innerHTML = 
+            "El caracter unicode asociado al numero " + entrada + " es " + caracterUnicode ;
+        }
+      }
+    </script>
+  <br>
+    <br>
+    
+    6. Toma dos entradas con window.prompt() y que se busque la primera aparición de la primera entrada
+    en la segunda con indexOf(). 
+    
+        <button onclick="ejercicio6()">Ejercicio 6</button>
+    <div id="resultado6"></div>
+    <script>
+      function ejercicio6(){
+        var entrada1 = prompt("Dime una palabra: ");
+        var entrada2 = prompt("Dime otra palabra: ");
+        var resultado = entrada1.indexOf(entrada2);
+        document.getElementById("resultado6").innerHTML = resultado;
+      }
+    </script>
+  <br>
+    
+    <br>
+    7. Toma dos entradas con
+    window.prompt() y que se busque la ultima aparición de la primera entrada en
+    la segunda con lastIndexOf() . 
+    <button onclick="ejercicio7()">Ejercicio 7</button>
+    <div id="resultado7"></div>
+    <script>
+      function ejercicio7(){
+        const a = prompt('Buscar (substr):');
+        const b = prompt('En (cadena):');
+        const res = b.lastIndexOf(a);
+        document.getElementById('resultado7').innerHTML = `<h1><strong>${res}</strong></h1>`;
+      }
+    </script>
+  <br>
+    
+
+    <br>
+    8. Ejecuta el siguiente codigo y explica que hace la variable expresion y hallado match() Busca una
+    coincidencia entre una expresión regular y una cadena y devuelve las
+    coincidencias o null si no ha encontrado nada.
+    <script>
+      /*cadena = "<br>Los temas son tema 1, tema 3, tema 5 y tema 6";
+        //expresion = /(capítulo \d+(\.\d)*)/i;
+        expresion = /(tema \d+)/i;
+        hallado = cadena.match(expresion);
+        document.write( cadena + "<br> expresion en "+hallado[1]);*/
+    </script>
+  <br>
+
+  
+  9. Toma dos entradas con window.prompt() y que se reemplace la primera en la segunda (replace)
+  <button onclick="ejercicio9()">Ejercicio 9</button>
+    <div id="resultado9"></div>
+    <script>
+      function ejercicio9(){
+        const buscar = prompt('Texto a reemplazar:');
+        const cadena = prompt('Cadena:');
+        const res = cadena.replace(buscar, '');
+        document.getElementById('resultado9').innerHTML = `<h1><strong>${res}</strong></h1>`;
+      }
+    </script>
+
+  10. search() Busca una subcadena en la cadena y devuelve la posición dónde se encontró (search)
+  <button onclick="ejercicio10()">Ejercicio 10</button>
+    <div id="resultado10"></div>
+    <script>
+      function ejercicio10(){
+        const sub = prompt('Subcadena a buscar:');
+        const cadena = prompt('Cadena:');
+        const pos = cadena.search(sub);
+        document.getElementById('resultado10').innerHTML = `<h1><strong>${pos}</strong></h1>`;
+      }
+    </script>
+
+  11. Toma una entrada con window.prompt() y extrae la mitad de la cadena (slice)
+  <button onclick="ejercicio11()">Ejercicio 11</button>
+    <div id="resultado11"></div>
+    <script>
+      function ejercicio11(){
+        const cadena = prompt('Cadena:');
+        const mitad = Math.floor(cadena.length/2);
+        const res = cadena.slice(0, mitad);
+        document.getElementById('resultado11').innerHTML = `<h1><strong>${res}</strong></h1>`;
+      }
+    </script>
+
+  12. Toma una entrada con window.prompt() y divide la cadena en un array por palabras (split)
+  <button onclick="ejercicio12()">Ejercicio 12</button>
+    <div id="resultado12"></div>
+    <script>
+      function ejercicio12(){
+        const cadena = prompt('Cadena:');
+        const arr = cadena.split(' ');
+        document.getElementById('resultado12').innerHTML = `<h1><strong>${JSON.stringify(arr)}</strong></h1>`;
+      }
+    </script>
+
+  13. Toma dos entradas con window.prompt() y con substr() extrae 5 caracteres a partir de la posición 5
+  <button onclick="ejercicio13b()">Ejercicio 13</button>
+    <div id="resultado13b"></div>
+    <script>
+      function ejercicio13b(){
+        const cadena = prompt('Cadena:');
+        const res = cadena.substr(5,5);
+        document.getElementById('resultado13b').innerHTML = `<h1><strong>${res}</strong></h1>`;
+      }
+    </script>
+
+  14. Toma dos entradas con window.prompt() y con substring() extrae 5 caracteres (posiciones 5–10)
+  <button onclick="ejercicio14b()">Ejercicio 14</button>
+    <div id="resultado14b"></div>
+    <script>
+      function ejercicio14b(){
+        const cadena = prompt('Cadena:');
+        const res = cadena.substring(5,10);
+        document.getElementById('resultado14b').innerHTML = `<h1><strong>${res}</strong></h1>`;
+      }
+    </script>
+
+  15. Toma una entrada con window.prompt() y muéstrala en minúsculas y mayúsculas (toLowerCase/toUpperCase)
+  <button onclick="ejercicio15b()">Ejercicio 15</button>
+    <div id="resultado15b"></div>
+    <script>
+      function ejercicio15b(){
+        const cadena = prompt('Cadena:');
+        document.getElementById('resultado15b').innerHTML = `<h1><strong>Min: ${cadena.toLowerCase()} | May: ${cadena.toUpperCase()}</strong></h1>`;
+      }
+    </script>
+
+  16. Modifica el ejercicio 7 con split() para resaltar (negrita) la cadena buscada dentro de la palabra
+  <button onclick="ejercicio16b()">Ejercicio 16</button>
+    <div id="resultado16b"></div>
+    <script>
+      function ejercicio16b(){
+        const buscar = prompt('Caracter a poner en negrita (ej: m):');
+        const cadena = prompt('Cadena (ej: limon):');
+        const parts = cadena.split('');
+        const res = parts.map(ch => ch === buscar ? `<strong>${ch}</strong>` : ch).join('');
+        document.getElementById('resultado16b').innerHTML = `<h1><strong>${res}</strong></h1>`;
+      }
+    </script>
+  </body>
+</html>
