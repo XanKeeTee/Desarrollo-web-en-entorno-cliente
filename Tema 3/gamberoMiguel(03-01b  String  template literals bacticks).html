@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+
+    <h1>03-01b  String  template literals bacticks</h1>
+
+    <h2>Ejercicio 1</h2>
+    <p>Ejercicio 1. Copia el ejemplo1 y modificalo para que tengas tres usuarios distintos (como no hemos visto aun arrays solo crea tres variables distintas)</p>
+    <button onclick="ejercicio1()">Ejecutar Ejercicio 1</button>
+    <div id="ejercicio1"></div>
+    <hr>
+    
+    <script>
+    function ejercicio1() {
+        const nombre1 = "Laura García";
+        const edad1 = 29;
+        const ciudad1 = "Madrid";
+        const intereses1 = ["fotografía", "viajes", "tecnología"];
+
+        const tarjetaUsuario1 = `
+            <div style="border: 1px solid #ccc; margin: 5px; padding: 10px;">
+                <h2>${nombre1}</h2>
+                <p>Edad: ${edad1}</p>
+                <p>Ciudad: ${ciudad1}</p>
+                <h4>Intereses:</h4>
+                <ul>
+                    ${intereses1.map(interes => `<li>${interes}</li>`).join("")}
+                </ul>
+            </div>
+        `;
+
+        const nombre2 = "Carlos Ruiz";
+        const edad2 = 34;
+        const ciudad2 = "Barcelona";
+        const intereses2 = ["fútbol", "programación"];
+
+        const tarjetaUsuario2 = `
+            <div style="border: 1px solid #ccc; margin: 5px; padding: 10px;">
+                <h2>${nombre2}</h2>
+                <p>Edad: ${edad2}</p>
+                <p>Ciudad: ${ciudad2}</p>
+                <h4>Intereses:</h4>
+                <ul>
+                    ${intereses2.map(interes => `<li>${interes}</li>`).join("")}
+                </ul>
+            </div>
+        `;
+
+        const nombre3 = "Ana López";
+        const edad3 = 25;
+        const ciudad3 = "Sevilla";
+        const intereses3 = ["música", "lectura"];
+
+        const tarjetaUsuario3 = `
+            <div style="border: 1px solid #ccc; margin: 5px; padding: 10px;">
+                <h2>${nombre3}</h2>
+                <p>Edad: ${edad3}</p>
+                <p>Ciudad: ${ciudad3}</p>
+                <h4>Intereses:</h4>
+                <ul>
+                    ${intereses3.map(interes => `<li>${interes}</li>`).join("")}
+                </ul>
+            </div>
+        `;
+
+        document.getElementById('ejercicio1').innerHTML = tarjetaUsuario1 + tarjetaUsuario2 + tarjetaUsuario3;
+    }
+    </script>
+
+    <h2>Ejercicio 2</h2>
+    <p>Ejercicio 2. Formatea una descripción con datos dinámicos.</p>
+    <button onclick="ejercicio2()">Ejecutar Ejercicio 2</button>
+    <div id="ejercicio2"></div>
+    <hr>
+    
+    <script>
+    function ejercicio2() {
+        const producto = "auriculares inalámbricos";
+        const precio = 59.99;
+        const marca = "SoundMax";
+
+        const productoCapitalizado = producto.split(' ')
+            .map(palabra => palabra.charAt(0).toUpperCase() + palabra.slice(1))
+            .join(' ');
+
+        const texto = `Los ${productoCapitalizado} de la marca ${marca} cuestan ${precio}€.`;
+
+        const textoFinal = texto.replace("€", "euros");
+
+        let resultado = `Texto base: ${texto}<br>
+                         Texto final: ${textoFinal}`;
+        
+        document.getElementById('ejercicio2').innerHTML = resultado;
+    }
+    </script>
+
+    <h2>Ejercicio 3</h2>
+    <p>Ejercicio 3. Construiye una plantilla de correo Crear una plantilla de email personalizada y limpiar texto con métodos de String.</p>
+    <button onclick="ejercicio3()">Ejecutar Ejercicio 3</button>
+    <div id="ejercicio3"></div>
+    <hr>
+    
+    <script>
+    function ejercicio3() {
+        const nombre = " juan pérez ";
+        const producto = "Teclado mecánico RGB";
+        const fecha = "09/10/2025";
+
+        const nombreLimpio = nombre.trim();
+
+        const nombreCapitalizado = nombreLimpio.split(' ')
+            .map(palabra => palabra.charAt(0).toUpperCase() + palabra.slice(1))
+            .join(' ');
+
+        const mensaje = `Hola ${nombreCapitalizado}, tu pedido del producto ${producto} se enviará el ${fecha}.`;
+        
+        const mensajeMayus = mensaje.toUpperCase();
+
+        let resultado = `Mensaje normal:<br>${mensaje}<br><br>
+                         Mensaje en mayúsculas:<br>${mensajeMayus}`;
+        
+        document.getElementById('ejercicio3').innerHTML = resultado;
+    }
+    </script>
+
+    <h2>Ejercicio 4</h2>
+    <p>Ejercicio 4. Genera una tabla de datos en HTML. Usar template literals y métodos de cadena para generar un bloque HTML limpio.</p>
+    <button onclick="ejercicio4()">Ejecutar Ejercicio 4</button>
+    <div id="ejercicio4"></div>
+    <hr>
+    
+    <script>
+    function ejercicio4() {
+        const usuarios = [" ana", "PEDRO", "maria "];
+        let resultadoHTML = "<ul>";
+
+        for (const usuario of usuarios) {
+            const limpio = usuario.trim().toLowerCase();
+            const capitalizado = limpio.charAt(0).toUpperCase() + limpio.slice(1);
+            resultadoHTML += `<li>${capitalizado}</li>`;
+        }
+
+        resultadoHTML += "</ul>";
+        
+        document.getElementById('ejercicio4').innerHTML = resultadoHTML;
+    }
+    </script>
+
+    <h2>Ejercicio 5</h2>
+    <p>Ejercicio 5. Análisis de texto dinámico. Analizar un texto generado con template literals y aplicar varias funciones de String.</p>
+    <button onclick="ejercicio5()">Ejecutar Ejercicio 5</button>
+    <div id="ejercicio5"></div>
+    <hr>
+    
+    <script>
+    function ejercicio5() {
+        const nombre = "Lucía";
+        const hobby = "leer libros de ciencia ficción";
+
+        const mensaje = `A ${nombre} le encanta ${hobby}.`;
+
+        const longitud = mensaje.length;
+
+        const incluyeFiccion = mensaje.includes("ficción");
+
+        const reemplazado = mensaje.replace("ficción", "aventuras");
+
+        const mayusculas = mensaje.toUpperCase();
+
+        let resultado = `Mensaje original: "${mensaje}"<br>
+                         Longitud: ${longitud} caracteres<br>
+                         ¿Incluye "ficción"?: ${incluyeFiccion}<br>
+                         Reemplazado: "${reemplazado}"<br>
+                         Mayúsculas: "${mayusculas}"`;
+
+        document.getElementById('ejercicio5').innerHTML = resultado;
+    }
+    </script>
+
+    <h2>Ejercicio 6</h2>
+    <p>Ejercicio 6. Plantilla de perfil resumido. Generar un resumen de usuario y recortar texto si es demasiado largo.</p>
+    <button onclick="ejercicio6()">Ejecutar Ejercicio 6</button>
+    <div id="ejercicio6"></div>
+    <hr>
+
+    <script>
+    function ejercicio6() {
+        const usuario = {
+            nombre: "Beatriz",
+            descripcion: "Apasionada del desarrollo web, la inteligencia artificial y los videojuegos."
+        };
+
+        let descripcionFinal = usuario.descripcion;
+        
+        if (usuario.descripcion.length > 50) {
+            descripcionFinal = usuario.descripcion.slice(0, 50) + "...";
+        }
+
+        const resultado = `Perfil de ${usuario.nombre}: ${descripcionFinal}`;
+        
+        document.getElementById('ejercicio6').innerHTML = resultado;
+    }
+    </script>
+
+</body>
+</html>

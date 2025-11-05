@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>02-04 Operadores Bit y de comparación JS</title>
+  </head>
+  <body>
+    <h1>Tema 2: Introducción al JavaScript</h1>
+    <h2>Práctica 02-04: Operadores Bit y de comparación JS</h2>
+
+    <h3>1. Rellena la siguiente tabla y créala con HTML5</h3>
+    <table border="1">
+      <tr>
+        <th>Sintaxis</th>
+        <th>Nombre</th>
+        <th>Uso / Significado</th>
+        <th>Ejemplo</th>
+      </tr>
+      <tr>
+        <td>=</td>
+        <td>Asignación</td>
+        <td>Asigna un valor</td>
+        <td>a = 5</td>
+      </tr>
+      <tr>
+        <td>+=</td>
+        <td>Asignación con suma</td>
+        <td>a = a + b</td>
+        <td>a += 2</td>
+      </tr>
+      <tr>
+        <td>-=</td>
+        <td>Asignación con resta</td>
+        <td>a = a - b</td>
+        <td>a -= 2</td>
+      </tr>
+      <tr>
+        <td>*=</td>
+        <td>Asignación con multiplicación</td>
+        <td>a = a * b</td>
+        <td>a *= 3</td>
+      </tr>
+      <tr>
+        <td>/=</td>
+        <td>Asignación con división</td>
+        <td>a = a / b</td>
+        <td>a /= 2</td>
+      </tr>
+      <tr>
+        <td>%=</td>
+        <td>Asignación con módulo</td>
+        <td>a = a % b</td>
+        <td>a %= 2</td>
+      </tr>
+      <tr>
+        <td>&=</td>
+        <td>Asignación AND bit a bit</td>
+        <td>a = a & b</td>
+        <td>a &= 9</td>
+      </tr>
+      <tr>
+        <td>|=</td>
+        <td>Asignación OR bit a bit</td>
+        <td>a = a | b</td>
+        <td>a |= 5</td>
+      </tr>
+      <tr>
+        <td>^=</td>
+        <td>Asignación XOR bit a bit</td>
+        <td>a = a ^ b</td>
+        <td>a ^= 3</td>
+      </tr>
+      <tr>
+        <td><<=</td>
+        <td>Desplazamiento izquierda</td>
+        <td>a = a << b</td>
+        <td>a <<= 1</td>
+      </tr>
+      <tr>
+        <td>>>=</td>
+        <td>Desplazamiento derecha sin signo</td>
+        <td>a = a >>> b</td>
+        <td>a >>>= 1</td>
+      </tr>
+    </table>
+
+    <h3>
+      2. Crea un ejemplo para cada asignación y muéstralo con
+      <code>document.write()</code>, <code>console.log()</code> o
+      <code>alert()</code>
+    </h3>
+    <script>
+      let a = 10,
+        b = 3;
+      document.write("= : " + (a = b) + "<br>");
+      a = 10;
+      document.write("+= : " + (a += b) + "<br>");
+      a = 10;
+      document.write("-= : " + (a -= b) + "<br>");
+      a = 10;
+      document.write("*= : " + (a *= b) + "<br>");
+      a = 10;
+      document.write("/= : " + (a /= b) + "<br>");
+      a = 10;
+      document.write("%= : " + (a %= b) + "<br>");
+      a = 15;
+      document.write("&= : " + (a &= 9) + "<br>");
+      a = 15;
+      document.write("|= : " + (a |= 9) + "<br>");
+      a = 15;
+      document.write("^= : " + (a ^= 9) + "<br>");
+      a = 8;
+      document.write("<<= : " + (a <<= 2) + "<br>");
+      a = 8;
+      document.write(">>= : " + (a >>= 2) + "<br>");
+      a = 8;
+      document.write(">>>= : " + (a >>>= 2) + "<br>");
+    </script>
+
+    <h3>3. Rellena la siguiente tabla y créala con HTML5</h3>
+    <table border="1">
+      <tr>
+        <th>JavaScript</th>
+        <th>Nombre</th>
+        <th>Ejemplo</th>
+      </tr>
+      <tr>
+        <td>&&</td>
+        <td>AND lógico</td>
+        <td>(x > 5 && y < 10)</td>
+      </tr>
+      <tr>
+        <td>||</td>
+        <td>OR lógico</td>
+        <td>(x > 5 || y < 10)</td>
+      </tr>
+      <tr>
+        <td>!</td>
+        <td>NOT lógico</td>
+        <td>!(x > 5)</td>
+      </tr>
+    </table>
+
+    <h3>4. Rellena las tablas de verdad del operador AND y créala con HTML5</h3>
+    <table border="1">
+      <tr>
+        <th>A</th>
+        <th>Op</th>
+        <th>B</th>
+        <th>Resultado</th>
+      </tr>
+      <tr>
+        <td>true</td>
+        <td>&&</td>
+        <td>true</td>
+        <td>true</td>
+      </tr>
+      <tr>
+        <td>true</td>
+        <td>&&</td>
+        <td>false</td>
+        <td>false</td>
+      </tr>
+      <tr>
+        <td>false</td>
+        <td>&&</td>
+        <td>true</td>
+        <td>false</td>
+      </tr>
+      <tr>
+        <td>false</td>
+        <td>&&</td>
+        <td>false</td>
+        <td>false</td>
+      </tr>
+    </table>
+
+    <h3>5. Rellena las tablas de verdad del operador OR y créala con HTML5</h3>
+    <table border="1">
+      <tr>
+        <th>A</th>
+        <th>Op</th>
+        <th>B</th>
+        <th>Resultado</th>
+      </tr>
+      <tr>
+        <td>true</td>
+        <td>||</td>
+        <td>true</td>
+        <td>true</td>
+      </tr>
+      <tr>
+        <td>true</td>
+        <td>||</td>
+        <td>false</td>
+        <td>true</td>
+      </tr>
+      <tr>
+        <td>false</td>
+        <td>||</td>
+        <td>true</td>
+        <td>true</td>
+      </tr>
+      <tr>
+        <td>false</td>
+        <td>||</td>
+        <td>false</td>
+        <td>false</td>
+      </tr>
+    </table>
+
+    <h3>
+      6. Crea un ejemplo para cada operador booleano y muéstralo con
+      document.write
+    </h3>
+    <script>
+      let x = 7,
+        y = 10;
+      document.write("x > 5 && y < 12: " + (x > 5 && y < 12) + "<br>");
+      document.write("x > 5 || y < 5: " + (x > 5 || y < 5) + "<br>");
+      document.write("!(x == 7): " + !(x == 7) + "<br>");
+    </script>
+
+    <h3>
+      7. Crea un ejemplo combinando con paréntesis con cada uno de los
+      operadores booleanos
+    </h3>
+    <script>
+      document.write(
+        "(x > 5 && (y < 12 || x == 7)): " +
+          (x > 5 && (y < 12 || x == 7)) +
+          "<br>"
+      );
+      document.write(
+        "((x < 5 || y == 10) && !(x == y)): " +
+          ((x < 5 || y == 10) && !(x == y)) +
+          "<br>"
+      );
+    </script>
+
+    <h3>8. ¿En qué consisten los operadores bit a bit? ¿Son muy usados?</h3>
+    <p>
+      Los operadores bit a bit comparan los bits individuales de dos números en
+      su forma binaria. No son muy usados en programación web, pero resultan
+      útiles en tareas de bajo nivel, encriptación o control de hardware.
+    </p>
+
+    <h3>9. ¿En qué formatos se puede usar?</h3>
+    <p>
+      Se pueden usar con números enteros (positivos o negativos). JavaScript
+      convierte internamente los valores a enteros de 32 bits con signo para
+      realizar las operaciones.
+    </p>
+
+    <h3>10. Rellena la tabla de operadores Bit a Bit y créala con HTML5</h3>
+    <table border="1">
+      <tr>
+        <th>Operador</th>
+        <th>Nombre</th>
+        <th>Ejemplo</th>
+        <th>Resultado</th>
+      </tr>
+      <tr>
+        <td>&</td>
+        <td>AND</td>
+        <td>8 & 12</td>
+        <td>8</td>
+      </tr>
+      <tr>
+        <td>|</td>
+        <td>OR</td>
+        <td>8 | 12</td>
+        <td>12</td>
+      </tr>
+      <tr>
+        <td>^</td>
+        <td>XOR</td>
+        <td>8 ^ 12</td>
+        <td>4</td>
+      </tr>
+      <tr>
+        <td>~</td>
+        <td>NOT</td>
+        <td>~12</td>
+        <td>-13</td>
+      </tr>
+      <tr>
+        <td><<</td>
+        <td>Desplazamiento izquierda</td>
+        <td>8 << 2</td>
+        <td>32</td>
+      </tr>
+      <tr>
+        <td>>></td>
+        <td>Desplazamiento derecha</td>
+        <td>8 >> 2</td>
+        <td>2</td>
+      </tr>
+      <tr>
+        <td>>>=</td>
+        <td>Desplazamiento derecha sin signo</td>
+        <td>-8 >>> 2</td>
+        <td>1073741822</td>
+      </tr>
+    </table>
+
+    <h3>11. Ejecuta este código y observa los resultados</h3>
+    <script>
+      let binario = "10010111";
+      let decimal = parseInt(binario, 2);
+      document.write(
+        "El binario " + binario + " es " + decimal + " en decimal<br>"
+      );
+
+      let DesplazamientoAND = decimal & 255;
+      let DesplazamientoOR = decimal | 255;
+      let DesplazamientoXOR = decimal ^ decimal;
+      let DesplazamientoNOT = ~decimal;
+      let DesplazamientoIzq = decimal << 1;
+      let DesplazamientoDer = decimal >> 1;
+      let DesplazamientoDer0 = decimal >>> 2;
+
+      document.write("AND: " + DesplazamientoAND + "<br>");
+      document.write("OR: " + DesplazamientoOR + "<br>");
+      document.write("XOR: " + DesplazamientoXOR + "<br>");
+      document.write("NOT: " + DesplazamientoNOT + "<br>");
+      document.write("<< : " + DesplazamientoIzq + "<br>");
+      document.write(">> : " + DesplazamientoDer + "<br>");
+      document.write(">>> : " + DesplazamientoDer0 + "<br>");
+    </script>
+
+    <h3>12. Modifica el código para que funcione correctamente</h3>
+    <script>
+      let segundoparametroBinario = "11111111";
+      let segundoparametro = parseInt(segundoparametroBinario, 2);
+      let d = parseInt("10010111", 2);
+
+      let AND2 = d & segundoparametro;
+      let OR2 = d | segundoparametro;
+      let XOR2 = d ^ segundoparametro;
+      let NOT2 = ~segundoparametro;
+      let IZQ2 = segundoparametro << 1;
+      let DER2 = segundoparametro >> 1;
+      let DER02 = d >>> 2;
+
+      document.write("<br>AND: " + AND2);
+      document.write("<br>OR: " + OR2);
+      document.write("<br>XOR: " + XOR2);
+      document.write("<br>NOT: " + NOT2);
+      document.write("<br><<: " + IZQ2);
+      document.write("<br>>>: " + DER2);
+      document.write("<br>>>>: " + DER02);
+    </script>
+  </body>
+</html>

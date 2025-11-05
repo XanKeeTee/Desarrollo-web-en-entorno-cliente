@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Miguel Angel Gambero - 03-03 JS Objetos Boolean y Date</h1>
+    <!-- Ejercicio 1. Crea un script que te cree la fecha de hoy a mano -->
+    <h2><u>Ejercicio 1</u></h2>
+    <div id="ejercicio1"></div>
+    <script>
+      let dia = new Date();
+
+      document.getElementById("ejercicio1").innerText =
+        dia.toLocaleString("es-ES");
+    </script>
+
+    <!-- Ejercicio 2. usa este formato de string para crear una fecha -->
+    <h2><u>Ejercicio 2</u></h2>
+    <div id="ejercicio2"></div>
+    <script>
+      let dia2 = new Date("11/06/2023");
+
+      document.getElementById("ejercicio2").innerText =
+        dia2.toLocaleDateString("es-ES");
+    </script>
+
+    <!-- Ejercicio 3. Usa este código para hacer la misma función -->
+    <h2><u>Ejercicio 3</u></h2>
+    <div id="ejercicio3"></div>
+    <script>
+      const tiempoTranscurrido = Date.now();
+      const hoy = new Date(tiempoTranscurrido);
+      // Mostrar fecha y hora actual de forma legible
+      document.getElementById("ejercicio3").innerText =
+        hoy.toLocaleString("es-ES");
+    </script>
+
+    <!--Ejercicio 4. Crea un script que te lea tu fecha de nacimiento y te calcule cuantos días llevas vivo.
+        Debes restar las dos fechas en milisegundos y dividir el numero entre (1000*60*60*24)
+        para mostrar las fechas puedes usar la función-->
+    <h2><u>Ejercicio 4</u></h2>
+    <button onclick="ejercicio4()">Ejercicio 4</button>
+    <div id="resultado4"></div>
+    <script>
+      function ejercicio4() {
+        const dia = prompt("Dime tu día de nacimiento (1-31):");
+        const mes = prompt("Dime tu mes de nacimiento (1-12):");
+        const anno = prompt("Dime tu año de nacimiento (ej. 1990):");
+
+        const fechaUsuario = new Date(anno, mes - 1, dia);
+        const ahora = new Date();
+
+        const diferenciaMs = ahora.getTime() - fechaUsuario.getTime();
+        const diasVividos = Math.floor(diferenciaMs / (1000 * 60 * 60 * 24));
+
+        const fechaFormateada = fechaUsuario.toLocaleDateString("es-ES");
+        document.getElementById("resultado4").innerHTML = `
+          <p>Fecha de nacimiento: ${fechaFormateada}</p>
+          <p>Días vividos: ${diasVividos.toLocaleString("es-ES")}</p>
+        `;
+      }
+    </script>
+
+    <!-- Ejercicio 5. Crea un script que te lea tu año de nacimiento y pais y sexo) . te calcule cuantos años te quedan
+        para llegar a la edad media de esperanza de vida tu país (debes hacer un if )-->
+
+    <!-- Pais Media Hombre Mujer
+            Japón 84,3 81,5 86,9
+            Suiza 83,4 81,8 85,1
+            España 83,2 80,7 85,7
+            Italia 83,0 80,9 84,9
+            Irak 72,4 69,9 75,0
+            Guinea Ecuatorial 62,2 60,9 63,6
+            Somalia 56,5 54,0 59,2-->
+
+    <h2><u>Ejercicio 5</u></h2>
+    <button onclick="ejercicio5()">Ejercicio 5</button>
+    <div id="resultado5"></div>
+
+    <script>
+      function ejercicio5(){
+        const esperanzaObj = {
+            japon: { hombre: 81.5, mujer: 86.9 },
+            suiza: { hombre: 81.8, mujer: 85.1 },
+            españa: { hombre: 80.7, mujer: 85.7 },
+            italia: { hombre: 80.9, mujer: 84.9 },
+            irak: { hombre: 69.9, mujer: 75.0 },
+            "guinea ecuatorial": { hombre: 60.9, mujer: 63.6 },
+            somalia: { hombre: 54.0, mujer: 59.2 }
+        };
+
+        const annoInput = parseInt(prompt("Digame su año de nacimiento: "));
+        const paisInput = (prompt("Digame el pais de nacimiento: ") || '').trim().toLowerCase();
+        const sexoInput = (prompt("Digame su sexo: ") || '').trim().toLowerCase();
+
+        let datos = null;
+        switch(paisInput){
+          case 'japon':
+            datos = esperanzaObj.japon;
+            break;
+          case 'suiza':
+            datos = esperanzaObj.suiza;
+            break;
+          case 'españa':
+            datos = esperanzaObj['españa'];
+            break;
+          case 'italia':
+            datos = esperanzaObj.italia;
+            break;
+          case 'irak':
+            datos = esperanzaObj.irak;
+            break;
+          case 'guinea ecuatorial':
+            datos = esperanzaObj['guinea ecuatorial'];
+            break;
+          case 'somalia':
+            datos = esperanzaObj.somalia;
+            break;
+          default:
+            datos = null;
+        }
+
+        let esperanzaValor;
+        if (datos) {
+          if (sexoInput == "h") {
+            esperanzaValor = datos.hombre;
+          } else if (sexoInput == "m") {
+            esperanzaValor = datos.mujer;
+          } else {
+            esperanzaValor = (datos.hombre + datos.mujer) / 2;
+          }
+        }
+        // calcular edad correctamente
+        const hoy = new Date();
+        const edadUsuario = hoy.getFullYear() - annoInput;
+        // asegurar que esperanzaValor sea numérico antes de restar
+        const esperanzaNum = typeof esperanzaValor === 'number' ? esperanzaValor : 0;
+        const diferenciaEdad = esperanzaNum - edadUsuario;
+        
+        document.getElementById("resultado5").innerHTML = `
+        <p>La esperanza de vida en ${paisInput} es de ${esperanzaNum}</p>
+        <p>Te faltan ${diferenciaEdad.toFixed(1)} años para llegar a la media de edad</p>
+        `;
+      }
+    </script>
+  </body>
+</html>

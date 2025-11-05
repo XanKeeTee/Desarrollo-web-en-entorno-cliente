@@ -37,7 +37,7 @@
     <br /><br />1. Ejercicio 1 Escribir un programa que pida al usuario una
     palabra y la muestre por pantalla 10 veces con for
 
-  <button onclick="mostrarPalabra()">Ejercicio 1</button>
+    <button onclick="mostrarPalabra()">Ejercicio 1</button>
     <div id="resultado1"></div>
     <script>
       function mostrarPalabra() {
@@ -55,7 +55,7 @@
     edad y muestre por pantalla todos los años que ha cumplido (desde 1 hasta su
     edad). (while)
 
-  <button onclick="ejercicio2()">Ejercicio 2</button>
+    <button onclick="ejercicio2()">Ejercicio 2</button>
     <div id="resultado2"></div>
     <script>
       function ejercicio2() {
@@ -76,7 +76,7 @@
     número entero positivo y muestre por pantalla todos los números impares
     desde 1 hasta ese número separados por comas.
 
-  <button onclick="ejercicio3()">Ejercicio 3</button>
+    <button onclick="ejercicio3()">Ejercicio 3</button>
     <div id="resultado3"></div>
     <script>
       function ejercicio3() {
@@ -96,7 +96,7 @@
     número entero positivo y muestre por pantalla la cuenta atrás desde ese
     número hasta cero separados por comas.
 
-  <button onclick="ejercicio4()">Ejercicio 4</button>
+    <button onclick="ejercicio4()">Ejercicio 4</button>
     <div id="resultado4"></div>
     <script>
       function ejercicio4() {
@@ -114,7 +114,7 @@
     cantidad a invertir, el interés anual y el número de años, y muestre por
     pantalla el capital obtenido en la inversión cada año que dura la inversión.
 
-  <button onclick="ejercicio5()">Ejercicio 5</button>
+    <button onclick="ejercicio5()">Ejercicio 5</button>
     <div id="resultado5"></div>
 
     <script>
@@ -141,7 +141,7 @@
     abajo, de altura el número introducido. <br />* <br />** <br />***
     <br />**** <br />*****
 
-  <button onclick="ejercicio6()">Ejercicio 6</button>
+    <button onclick="ejercicio6()">Ejercicio 6</button>
     <div id="resultado6"></div>
     <script>
       function ejercicio6() {
@@ -160,14 +160,17 @@
 
     <div id="resultado7"></div>
 
+    <button onclick="ejercicio7()">Ejercicio 7</button>
     <script>
-      let salida = "<h3>Tabla de multiplicar</h3>";
-      for (var i = 1; i < 10; i++) {
-        salida += "Tabla del " + i + ": ";
-        for (var j = 1; j < 10; j++) {
-          salida += i * j + " ";
+      function ejercicio7() {
+        let salida = "<h3>Tabla de multiplicar</h3>";
+        for (var i = 1; i < 11; i++) {
+          salida += "Tabla del " + i + ": ";
+          for (var j = 1; j < 11; j++) {
+            salida += i * j + " ";
+          }
+          salida += "<br>";
         }
-        salida += "<br>";
         document.getElementById("resultado7").innerHTML = salida;
       }
     </script>
@@ -176,7 +179,7 @@
     número entero y muestre por pantalla un triángulo rectángulo como el de más
     abajo. <br />1 <br />3 1 <br />5 3 1 <br />7 5 3 1 <br />9 7 5 3 1
 
-  <button onclick="ejercicio8()">Ejercicio 8</button>
+    <button onclick="ejercicio8()">Ejercicio 8</button>
     <div id="resultado8"></div>
     <script>
       function ejercicio8() {
@@ -197,7 +200,9 @@
           salida += numeros.join(" ") + "<br>";
         }
 
-        document.getElementById("resultado8").innerHTML = salida;
+        document.getElementById(
+          "resultado8"
+        ).innerHTML = `<h1><strong>${salida}</strong></h1>`;
       }
     </script>
 
@@ -205,7 +210,7 @@
     caracteres contraseña en una variable, pregunte al usuario por la contraseña
     hasta que introduzca la contraseña correcta.
 
-  <button onclick="ejercicio9()">Ejercicio 9</button>
+    <button onclick="ejercicio9()">Ejercicio 9</button>
     <div id="resultado9"></div>
 
     <script>
@@ -219,30 +224,32 @@
           if (contraseña == contraseñaUsuario) {
             salida = "Contraseña correcta";
           } else {
-            salida = "Contrasñea incorrecta";
+            salida = "Contraseña incorrecta";
           }
         }
-        document.getElementById("resultado9").innerHTML = salida;
+        document.getElementById(
+          "resultado9"
+        ).innerHTML = `<h1><strong>${salida}</strong></h1>`;
       }
     </script>
 
     <br /><br />10. Ejercicio 10 Escribir un programa que pida al usuario un
     número entero y muestre por pantalla si es un número primo o no.
 
-  <button onclick="ejercicio10()">Ejercicio 10</button>
+    <button onclick="ejercicio10()">Ejercicio 10</button>
     <div id="resultado10"></div>
 
     <script>
       function ejercicio10() {
-        let numero = prompt("Digame un numero");
+        let numero = parseInt(prompt("Dime un número:"), 10);
         let salida = "";
 
-        if (numero == 1) {
-          salida = "El numero " + numreo + " no es primo";
+        if (isNaN(numero) || numero < 2) {
+          salida = `El número ${numero} no es primo`;
         } else if (numero <= 3) {
-          salida = "El numero " + numreo + " es primo";
+          salida = `El número ${numero} es primo`;
         } else if (numero % 2 == 0 || numero % 3 == 0) {
-          salida = "El numero " + numreo + " no es primo";
+          salida = `El número ${numero} no es primo`;
         } else {
           let esPrimo = true;
           let i = 5;
@@ -250,17 +257,20 @@
           while (i * i <= numero) {
             if (numero % i === 0 || numero % (i + 2) === 0) {
               esPrimo = false;
+              break;
             }
             i += 6;
           }
 
           if (esPrimo) {
-            salida = "El número " + numero + " es primo";
+            salida = `El número ${numero} es primo`;
           } else {
-            salida = "El número " + numero + " no es primo";
+            salida = `El número ${numero} no es primo`;
           }
         }
-        document.getElementById("resultado10").innerHTML = salida;
+        document.getElementById(
+          "resultado10"
+        ).innerHTML = `<h1><strong>${salida}</strong></h1>`;
       }
     </script>
 
@@ -280,7 +290,9 @@
           resultado += palabra[i] + "<br>";
         }
 
-        document.getElementById("resultado11").innerHTML = resultado;
+        document.getElementById(
+          "resultado11"
+        ).innerHTML = `<h1><strong>${resultado}</strong></h1>`;
       }
     </script>
 
@@ -303,8 +315,9 @@
           }
         }
 
-        document.getElementById("resultado12").innerHTML =
-          "La letra '" + letra + "' aparece " + contador + " veces.";
+        document.getElementById(
+          "resultado12"
+        ).innerHTML = `<h1><strong>La letra '${letra}' aparece ${contador} veces.</strong></h1>`;
       }
     </script>
 
@@ -327,7 +340,9 @@
           }
         }
 
-        document.getElementById("resultado13").innerHTML = resultado;
+        document.getElementById(
+          "resultado13"
+        ).innerHTML = `<h1><strong>${resultado}</strong></h1>`;
       }
     </script>
 
@@ -342,20 +357,25 @@
     <script>
       function ejercicio14() {
         let cantidad = parseFloat(prompt("Cantidad a pedir:"));
-        let interesAnual = parseFloat(prompt("Interés anual (%)")) / 100;
-        let años = parseInt(prompt("Número de años:"));
+        let interesAnual = parseFloat(prompt("Interés anual (%):")) / 100;
+        let años = parseInt(prompt("Número de años:"), 10);
 
         let cuota = cantidad / años; // amortización anual
-        let resultado = "";
+        let resultado = "<ol>";
 
         for (let i = 1; i <= años; i++) {
           let interes = cantidad * interesAnual;
           let total = cuota + interes;
-          resultado += "Año " + i + ": cuota = " + total.toFixed(2) + "<br>";
+          resultado +=
+            "<li>Año " + i + ": cuota = " + total.toFixed(2) + "</li>";
           cantidad -= cuota; // se reduce el capital pendiente
         }
 
-        document.getElementById("resultado14").innerHTML = resultado;
+        resultado += "</ol>";
+
+        document.getElementById(
+          "resultado14"
+        ).innerHTML = `<h1><strong>${resultado}</strong></h1>`;
       }
     </script>
   </body>

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    h2 {
+      text-decoration: underline;
+    }
+  </style>
+  <body>
+    <h1>Miguel Angel Gambero - 03-05 JS Objetos location y navigator</h1>
+
+    <!--Ejecuta el siguiente codigo y explica La estructura  document.getElementById("elementoaCambiar").innerHTML  
+        <div id="elementoaCambiar"> </div>
+        <script >
+            document.getElementById("elementoaCambiar").innerHTML="texto nuevo";
+        </script>
+    -->
+    <h2>Ejercicio 1</h2>
+    <div id="elementoaCambiar"></div>
+    <script>
+      document.getElementById("elementoaCambiar").innerHTML = "texto nuevo";
+    </script>
+
+    <!--2.Realiza un script que muestre las siguientes propiedades del objeto location 
+      1.hash 
+      2.host 
+      3.hostname
+      4.href 
+      5.pathname 
+      6.port 
+      7.protocol
+      8.search-->
+
+    <h2>Ejercicio 2</h2>
+    <button onclick="ejercicio2()">Ejercicio 2</button>
+    <div id="ejercicio2"></div>
+    <script>
+      function ejercicio2() {
+        let salida = "<br>";
+
+        salida += "Hash: " + location.hash + "<br>";
+        salida += "Host: " + location.host + "<br>";
+        salida += "Hostname: " + location.hostname + "<br>";
+        salida += "Href: " + location.href + "<br>";
+        salida += "Pathname: " + location.pathname + "<br>";
+        salida += "Port: " + location.port + "<br>";
+        salida += "Protocol: " + location.protocol + "<br>";
+        salida += "Search: " + location.search + "<br>";
+
+        document.getElementById("ejercicio2").innerHTML = salida;
+      }
+    </script>
+    <!-- Ejecuta el siguiente código y explica que hace assign().
+      <body>
+
+      <h2>The assign Property of Location Object</h2>
+      <button onclick="myFunction()">Load new document</button>
+      <script>
+      function myFunction() {
+        location.assign("https://www.iesplayamar.es");
+      }
+      </script></body>-->
+
+    <h2>Ejercicio 3</h2>
+    <button onclick="myFunction()">Ejercicio 3</button>
+    <script>
+      function myFunction() {
+        location.assign("https://www.iesplayamar.es");
+      }
+    </script>
+    <!-- 4.Modifica este ejemplo para que cargue el valor que se le pase desde un input text o un prompt-->
+    <h2>Ejercicio 4</h2>
+    <button onclick="ejercicio4()">Ejercicio 4</button>
+    <script>
+      function ejercicio4() {
+        let url = prompt("Introduzca la url: ");
+        location.assign(url);
+      }
+    </script>
+
+    <!-- 5.Haz un ejemplo de window.reload()  añadiendo un botón al anterior ejercicio-->
+    <h2>Ejercicio 5</h2>
+    <button onclick="window.reload()">Ejercicio 5</button>
+
+    <!-- 6.Haz un ejemplo de window.replace()  añadiendo un botón al anterior ejercicio -->
+    <h2>Ejercicio 6</h2>
+    <button onclick="window.replace()">Ejercicio 6</button>
+
+    <!-- 7. Que diferencia hay entre replace y assign ?-->
+    <h2>Ejercicio 7</h2>
+    <p>
+      replace() sirve para cambiar valores dentro del DataFrame. Ejemplo:
+      cambiar "rojo" por "azul".
+      <br />
+      assign() sirve para crear o modificar columnas completas. Ejemplo: agregar
+      una nueva columna llamada "total".
+    </p>
+    <!-- 8. Realiza un script que muestre las siguientes propiedades del objeto Navigator
+            appCodeName
+            appName
+            appVersion
+            cookieEnabled
+            platform
+            userAgent-->
+    <h2>Ejercicio 8</h2>
+    <script>
+      document.write("appCodeName: " + navigator.appCodeName + "<br>");
+      document.write("appName: " + navigator.appName + "<br>");
+      document.write("appVersion: " + navigator.appVersion + "<br>");
+      document.write("cookieEnabled: " + navigator.cookieEnabled + "<br>");
+      document.write("platform: " + navigator.platform + "<br>");
+      document.write("userAgent: " + navigator.userAgent + "<br>");
+    </script>
+
+    <!-- -->
+
+    <p id="demo"></p>
+    <script>
+      try {
+        if (
+          navigator.geolocation.getCurrentPosition(showPosition)
+            .GeolocationPositionError != PERMISSION_DENIED
+        )
+          navigator.geolocation.getCurrentPosition(showPosition);
+      } catch (e) {
+        document.getElementById("demo").innerHTML =
+          "Geolocation is not supported by this browser2.";
+      }
+      function showPosition(position) {
+        document.getElementById("demo").innerHTML =
+          "Latitude: " +
+          position.coords.latitude +
+          "<br>" +
+          "Longitude: " +
+          position.coords.longitude;
+      }
+    </script>
+  <iframe id="mapa" src="https://www.google.es/maps/@36.643675,-4.4902875,15z&output=embed" width="500px" height="350" style="border:0;"></iframe>
+
+    <!-- 10. Modifica dicho script con assign para que te cargue el mapa de google maps en un iframe
+          URL De Google : https://www.google.es/maps/@36.643675,-4.4902875,15z -->
+
+    <h2>Ejercicio 10</h2>
+    <button onclick="ejercicio10()">Ejercicio 10: Cargar mapa en iframe</button>
+    <div id="resultado10"></div>
+    <script>
+      function ejercicio10(){
+        const defaultUrl = 'https://www.google.es/maps/@36.643675,-4.4902875,15z&output=embed';
+        let url = prompt('Introduce la URL de Google Maps (dejar vacío para la por defecto):', defaultUrl);
+        if (url === null) return; // cancel
+        url = url.trim() === '' ? defaultUrl : url.trim();
+        // Asegurar que tenga output=embed para cargar en iframe
+        if (!/output=embed/.test(url)) {
+          // si ya contiene parámetros, añadir con &; si no, con ?
+          url += (url.indexOf('?') === -1 && url.indexOf('&') === -1) ? '?output=embed' : '&output=embed';
+        }
+        document.getElementById('mapa').src = url;
+        document.getElementById('resultado10').innerHTML = '<h1><strong>Mapa cargado</strong></h1>';
+      }
+    </script>
+
+    <!--11. Modifica dicho script Para poner un boton que aumente o minimice el zoom del iframe modificando el valor de ,15z
+            https://www.google.es/maps/@36.643675,-4.4902875,15z -->
+    <h2>Ejercicio 11</h2>
+    <button onclick="cambiarZoom(-1)">-</button>
+    <button onclick="cambiarZoom(1)">+</button>
+    <div id="resultado11"></div>
+    <script>
+      function cambiarZoom(delta){
+        const iframe = document.getElementById('mapa');
+        const src = iframe.src;
+        // Buscar patrón ,<n>z  (ej: ,15z)
+        const regex = /,\s*(\d{1,2})z/;
+        const m = src.match(regex);
+        if (!m){
+          document.getElementById('resultado11').innerHTML = '<h1><strong>No se encontró nivel de zoom en la URL</strong></h1>';
+          return;
+        }
+        let z = parseInt(m[1], 10);
+        z = Math.min(21, Math.max(0, z + delta));
+        const newSrc = src.replace(regex, ',' + z + 'z');
+        iframe.src = newSrc;
+        document.getElementById('resultado11').innerHTML = `<h1><strong>Zoom: ${z}</strong></h1>`;
+      }
+    </script>
+  </body>
+</html>

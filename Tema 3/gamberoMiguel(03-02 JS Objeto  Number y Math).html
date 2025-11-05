@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Ejercicios JavaScript: Number y Math</h1>   
+    <h2>Ejercicio 1</h2>
+    <p>
+      1. Toma una entrada con window.prompt() y que nos pida la un radio y
+      debemos calcular la circunferencia (2*PI*Radio) y el area
+      ($PI*Radio^{2}$).
+    </p>
+    <button onclick="ejercicio1()">Ejecutar Ejercicio 1</button>
+    <div id="output1"></div>
+    <hr />
+
+    <script>
+      function ejercicio1() {
+        const radio = parseFloat(window.prompt("Introduce el radio:"));
+        let resultado;
+
+        if (isNaN(radio) || radio < 0) {
+          resultado = "Error: Introduce un número válido y positivo.";
+        } else {
+          const circunferencia = 2 * Math.PI * radio;
+          const area = Math.PI * Math.pow(radio, 2);
+          resultado = `Radio: ${radio}<br>
+                         Circunferencia: ${circunferencia.toFixed(4)}<br>
+                         Área: ${area.toFixed(4)}`;
+        }
+        document.getElementById("output1").innerHTML = resultado;
+      }
+    </script>
+
+    <h2>Ejercicio 2</h2>
+    <p>
+      2. Toma dos entradas con window.prompt() y que nos pida los dos catetos y
+      debemos calcular la hipotenusa ($c=\sqrt{a^{2}+b^{2}}$).
+    </p>
+    <button onclick="ejercicio2()">Ejecutar Ejercicio 2</button>
+    <div id="output2"></div>
+    <hr />
+
+    <script>
+      function ejercicio2() {
+        const cateto1 = parseFloat(
+          window.prompt("Introduce el primer cateto (a):")
+        );
+        const cateto2 = parseFloat(
+          window.prompt("Introduce el segundo cateto (b):")
+        );
+        let resultado;
+
+        if (isNaN(cateto1) || isNaN(cateto2) || cateto1 < 0 || cateto2 < 0) {
+          resultado = "Error: Introduce números válidos y positivos.";
+        } else {
+          const hipotenusa = Math.hypot(cateto1, cateto2);
+          resultado = `Cateto a: ${cateto1}<br>
+                         Cateto b: ${cateto2}<br>
+                         Hipotenusa (c): ${hipotenusa.toFixed(4)}`;
+        }
+        document.getElementById("output2").innerHTML = resultado;
+      }
+    </script>
+
+    <h2>Ejercicio 3</h2>
+    <p>
+      3. Haz un script que nos muestre los siguientes constantes: 1. E (el
+      número Euler), 2. LN2 (el logaritmo neperiano de 2), 3. LN10 (el logaritmo
+      neperiano de 10), 4. LOG2E (el logaritmo base 2 de E), 5. LOG10E (el
+      logaritmo base 10 de E).
+    </p>
+    <button onclick="ejercicio3()">Ejecutar Ejercicio 3</button>
+    <div id="output3"></div>
+    <hr />
+
+    <script>
+      function ejercicio3() {
+        let resultado = `E (Euler): ${Math.E}<br>
+                         LN2 (Log Neperiano de 2): ${Math.LN2}<br>
+                         LN10 (Log Neperiano de 10): ${Math.LN10}<br>
+                         LOG2E (Log Base 2 de E): ${Math.LOG2E}<br>
+                         LOG10E (Log Base 10 de E): ${Math.LOG10E}`;
+        document.getElementById("output3").innerHTML = resultado;
+      }
+    </script>
+
+    <h2>Ejercicio 4</h2>
+    <p>
+      4. Toma una entrada con window.prompt() y que nos pida un numero y debemos
+      calcular los siguientes valores: logaritmo neperiano del valor, logaritmo
+      base 2 del valor, logaritmo base 10 del valor. usando esta formula
+      $log_{a}b=\frac{log~b}{log~a}$.
+    </p>
+    <button onclick="ejercicio4()">Ejecutar Ejercicio 4</button>
+    <div id="output4"></div>
+    <hr />
+
+    <script>
+      function ejercicio4() {
+        const num = parseFloat(
+          window.prompt("Introduce un número (x) positivo:")
+        );
+        let resultado;
+
+        if (isNaN(num) || num <= 0) {
+          resultado = "Error: Introduce un número positivo.";
+        } else {
+          const logN = Math.log(num);
+          const log2 = Math.log(num) / Math.log(2);
+          const log10 = Math.log(num) / Math.log(10);
+
+          resultado = `Número (x): ${num}<br>
+                         Logaritmo Neperiano (ln(x)): ${logN.toFixed(4)}<br>
+                         Logaritmo Base 2 (log2(x)): ${log2.toFixed(4)}<br>
+                         Logaritmo Base 10 (log10(x)): ${log10.toFixed(4)}`;
+        }
+        document.getElementById("output4").innerHTML = resultado;
+      }
+    </script>
+
+    <h2>Ejercicio 5</h2>
+    <p>
+      5. Toma como entrada un angulo entre 0 y 360 con window.prompt() y nos la
+      debe convertir en radianes ($radianes=(grados/180)*PI)$ debe tener un if
+      para que su valor este entre 0 y 360 en caso contrario debe dar error.
+    </p>
+    <button onclick="ejercicio5()">Ejecutar Ejercicio 5</button>
+    <div id="output5"></div>
+    <hr />
+
+    <script>
+      function ejercicio5() {
+        const grados = parseFloat(
+          window.prompt("Introduce un ángulo (0-360):")
+        );
+        let resultado;
+
+        if (isNaN(grados) || grados < 0 || grados > 360) {
+          resultado = "Error: El valor debe estar entre 0 y 360.";
+        } else {
+          const radianes = (grados / 180) * Math.PI;
+          resultado = `${grados} grados son ${radianes.toFixed(4)} radianes.`;
+        }
+        document.getElementById("output5").innerHTML = resultado;
+      }
+    </script>
+
+    <h2>Ejercicio 6</h2>
+    <p>
+      6. Modifica el anterior script para muestre los siguientes valores del
+      valor tomado (en radianes): 1. cos(x), 2. sin(x), 3. tan(x).
+    </p>
+    <button onclick="ejercicio6()">Ejecutar Ejercicio 6</button>
+    <div id="output6"></div>
+    <hr />
+
+    <script>
+      function ejercicio6() {
+        const grados = parseFloat(
+          window.prompt("Introduce un ángulo (0-360):")
+        );
+        let resultado;
+
+        if (isNaN(grados) || grados < 0 || grados > 360) {
+          resultado = "Error: El valor debe estar entre 0 y 360.";
+        } else {
+          const radianes = (grados / 180) * Math.PI;
+          const cos = Math.cos(radianes);
+          const sin = Math.sin(radianes);
+          const tan = Math.tan(radianes);
+
+          resultado = `${grados} grados = ${radianes.toFixed(4)} radianes.<br>
+                         cos(x) = ${cos.toFixed(4)}<br>
+                         sin(x) = ${sin.toFixed(4)}<br>
+                         tan(x) = ${tan.toFixed(4)}`;
+        }
+        document.getElementById("output6").innerHTML = resultado;
+      }
+    </script>
+
+    <h2>Ejercicio 7</h2>
+    <p>
+      7. Toma una entrada con window.prompt() y debe tener un if para que su
+      valor este entre en el rango (0 y 1) en caso contrario debe dar error y
+      calcule los siguientes valores: 1. acos(x), 2. asin(x), 3. atan(x).
+    </p>
+    <button onclick="ejercicio7()">Ejecutar Ejercicio 7</button>
+    <div id="output7"></div>
+    <hr />
+
+    <script>
+      function ejercicio7() {
+        const num = parseFloat(
+          window.prompt("Introduce un número (entre 0 y 1):")
+        );
+        let resultado;
+
+        if (isNaN(num) || num < 0 || num > 1) {
+          resultado = "Error: El valor debe estar entre 0 y 1.";
+        } else {
+          const acos = Math.acos(num);
+          const asin = Math.asin(num);
+          const atan = Math.atan(num);
+
+          resultado = `Número (x): ${num}<br>
+                         acos(x) (en radianes): ${acos.toFixed(4)}<br>
+                         asin(x) (en radianes): ${asin.toFixed(4)}<br>
+                         atan(x) (en radianes): ${atan.toFixed(4)}`;
+        }
+        document.getElementById("output7").innerHTML = resultado;
+      }
+    </script>
+
+    <h2>Ejercicio 8</h2>
+    <p>
+      8. Toma un numero con window.prompt() y debe tener un if para que sea un
+      numero (chequear con isNaN) y que calcule su techo, suelo y redondeo.
+    </p>
+    <button onclick="ejercicio8()">Ejecutar Ejercicio 8</button>
+    <div id="output8"></div>
+    <hr />
+
+    <script>
+      function ejercicio8() {
+        const numStr = window.prompt(
+          "Introduce un número (puede tener decimales):"
+        );
+        const num = parseFloat(numStr);
+        let resultado;
+
+        if (isNaN(num)) {
+          resultado = "Error: La entrada no es un número.";
+        } else {
+          const techo = Math.ceil(num);
+          const suelo = Math.floor(num);
+          const redondeo = Math.round(num);
+
+          resultado = `Número: ${num}<br>
+                         Techo (Ceil): ${techo}<br>
+                         Suelo (Floor): ${suelo}<br>
+                         Redondeo (Round): ${redondeo}`;
+        }
+        document.getElementById("output8").innerHTML = resultado;
+      }
+    </script>
+
+    <h2>Ejercicio 9</h2>
+    <p>
+      9. Toma un numero con window.prompt() y debe tener un if para que sea un
+      numero y que calcule su redondeo con un decimal con esta formula:
+      Redondeo1Decimal(x) = Redondeo(x*10)/10.
+    </p>
+    <button onclick="ejercicio9()">Ejecutar Ejercicio 9</button>
+    <div id="output9"></div>
+
+    <script>
+      function ejercicio9() {
+        const num = parseFloat(
+          window.prompt("Introduce un número (puede tener decimales):")
+        );
+        let resultado;
+
+        if (isNaN(num)) {
+          resultado = "Error: La entrada no es un número.";
+        } else {
+          const redondeo1Decimal = Math.round(num * 10) / 10;
+
+          resultado = `Número: ${num}<br>
+                         Redondeado a 1 decimal: ${redondeo1Decimal}`;
+        }
+        document.getElementById("output9").innerHTML = resultado;
+      }
+    </script>
+
+    <h2>Ejercicio 10</h2>
+    <p>
+      10. Toma numeros con window.prompt() hasta que el numero entrado sea 0 y
+      calcula su máximo y mínimo.
+    </p>
+    <button onclick="ejercicio10()">Ejecutar Ejercicio 10</button>
+    <div id="output10"></div>
+
+    <script>
+      function ejercicio10() {
+        let num;
+        let min = Infinity;
+        let max = -Infinity;
+        let count = 0;
+        let resultado;
+
+        while (true) {
+          num = parseFloat(
+            window.prompt("Introduce un número (0 para parar):")
+          );
+
+          if (isNaN(num)) {
+            alert("Por favor, introduce un número válido.");
+            continue;
+          }
+          if (num === 0) {
+            break;
+          }
+          count++;
+          min = Math.min(num, min);
+          max = Math.max(num, max);
+        }
+
+        if (count === 0) {
+          resultado = "No se introdujeron números (además del 0).";
+        } else {
+          resultado = `Números introducidos: ${count}<br>
+                         Mínimo: ${min}<br>
+                         Máximo: ${max}`;
+        }
+        document.getElementById("output10").innerHTML = resultado;
+      }
+    </script>
+
+    <h2>Ejercicio 11</h2>
+    <p>
+      11. Toma una entrada (B) con window.prompt() debes sacar un numero
+      aleatorio entre 0 y ese numero usando esta formula: AleatorioMaxB =
+      round(random()*B).
+    </p>
+    <button onclick="ejercicio11()">Ejecutar Ejercicio 11</button>
+    <div id="output11"></div>
+
+    <script>
+      function ejercicio11() {
+        const b = parseFloat(
+          window.prompt("Introduce un número (B) para el límite superior:")
+        );
+        let resultado;
+
+        if (isNaN(b) || b < 0) {
+          resultado = "Error: Introduce un número (B) válido y positivo.";
+        } else {
+          const aleatorio = Math.round(Math.random() * b);
+          resultado = `Límite superior (B): ${b}<br>
+                         Número aleatorio (0 - B): ${aleatorio}`;
+        }
+        document.getElementById("output11").innerHTML = resultado;
+      }
+    </script>
+
+    <h2>Ejercicio 12: Formatos de Número</h2>
+    <p>
+      12. Toma una entrada con window.prompt() debes mostrarla: 1. en base 2, 8
+      y 16, 2. notación exponencial, 3. con 10 digitos decimales después del
+      punto decimal, 4. con número a la longitud 8.
+    </p>
+    <button onclick="ejercicio12()">Ejecutar Ejercicio 12</button>
+    <div id="output12"></div>
+    <hr />
+
+    <script>
+      function ejercicio12() {
+        const numStr = window.prompt("Introduce un número:");
+        const num = parseFloat(numStr);
+        const numInt = parseInt(numStr);
+        let resultado;
+
+        if (isNaN(num)) {
+          resultado = "Error: Introduce un número válido.";
+        } else {
+          resultado = `Número: ${num}<br>
+                         Base 2 (Binario): ${numInt.toString(2)}<br>
+                         Base 8 (Octal): ${numInt.toString(8)}<br>
+                         Base 16 (Hex): ${numInt.toString(16).toUpperCase()}<br>
+                         Notación Exponencial: ${num.toExponential(4)}<br>
+                         Con 10 decimales: ${num.toFixed(10)}<br>
+                         Con longitud 8 (Precisión): ${num.toPrecision(8)}`;
+        }
+        document.getElementById("output12").innerHTML = resultado;
+      }
+    </script>
+
+    <h2>Ejercicio 13</h2>
+    <p>
+      13. Toma una entrada con window.prompt() debes mostrarla: 1. Como Euros,
+      2. Como Yenes, 3. Con 3 decimales minimo, 4. Con 3 decimales minimo y
+      maximo.
+    </p>
+    <button onclick="ejercicio13()">Ejecutar Ejercicio 13</button>
+    <div id="output13"></div>
+
+    <script>
+      function ejercicio13() {
+        const num = parseFloat(
+          window.prompt("Introduce un número (ej: 12345.67):")
+        );
+        let resultado;
+
+        if (isNaN(num)) {
+          resultado = "Error: Introduce un número válido.";
+        } else {
+          const euros = num.toLocaleString("es-ES", {
+            style: "currency",
+            currency: "EUR",
+          });
+          const yenes = num.toLocaleString("ja-JP", {
+            style: "currency",
+            currency: "JPY",
+          });
+          const min3 = num.toLocaleString("es-ES", {
+            minimumFractionDigits: 3,
+          });
+          const minMax3 = num.toLocaleString("es-ES", {
+            minimumFractionDigits: 3,
+            maximumFractionDigits: 3,
+          });
+
+          resultado = `Número: ${num}<br>
+                         Euros (es-ES): ${euros}<br>
+                         Yenes (ja-JP): ${yenes}<br>
+                         Mínimo 3 decimales: ${min3}<br>
+                         Mín/Máx 3 decimales: ${minMax3}`;
+        }
+        document.getElementById("output13").innerHTML = resultado;
+      }
+    </script>
+
+    <h2>Ejercicio 14</h2>
+    <p>
+      14. Toma una entrada con window.prompt() a, b, c y resuelve la ecuación
+      $ax^{2}+bx+c=0$ usando la fórmula $x=\frac{-b\pm\sqrt{b^{2}-4\cdot a\cdot
+      c}}{2\cdot a}$.
+    </p>
+    <button onclick="ejercicio14()">Ejecutar Ejercicio 14</button>
+    <div id="output14"></div>
+
+    <script>
+      function ejercicio14() {
+        const a = parseFloat(window.prompt("Introduce 'a' (de ax²+bx+c=0):"));
+        const b = parseFloat(window.prompt("Introduce 'b':"));
+        const c = parseFloat(window.prompt("Introduce 'c':"));
+        let resultado;
+
+        if (isNaN(a) || isNaN(b) || isNaN(c)) {
+          resultado = "Error: Introduce números válidos para a, b, y c.";
+          document.getElementById("output14").innerHTML = resultado;
+          return;
+        }
+
+        const discriminante = Math.pow(b, 2) - 4 * a * c;
+
+        resultado = `Ecuación: ${a}x² + ${b}x + ${c} = 0<br>
+                     Discriminante (b²-4ac): ${discriminante}<br><br>`;
+
+        if (discriminante > 0) {
+          const x1 = (-b + Math.sqrt(discriminante)) / (2 * a);
+          const x2 = (-b - Math.sqrt(discriminante)) / (2 * a);
+          resultado += `Dos soluciones reales:<br>
+                          x1 = ${x1.toFixed(4)}<br>
+                          x2 = ${x2.toFixed(4)}`;
+        } else if (discriminante === 0) {
+          const x1 = -b / (2 * a);
+          resultado += `Una solución real (doble):<br>
+                          x = ${x1.toFixed(4)}`;
+        } else {
+          const real = (-b / (2 * a)).toFixed(4);
+          const imag = (Math.sqrt(-discriminante) / (2 * a)).toFixed(4);
+          resultado += `Dos soluciones complejas:<br>
+                          x1 = ${real} + ${imag}i<br>
+                          x2 = ${real} - ${imag}i`;
+        }
+        document.getElementById("output14").innerHTML = resultado;
+      }
+    </script>
+
+    <h2>Ejercicio 15</h2>
+    <p>
+      15. Toma una entrada con window.prompt() para tomar a1, b1, c1, a2, b2,
+      c2. Resuelve el sistema $a1x+b1y=c1$, $a2x+b2y=c2$.
+    </p>
+    <button onclick="ejercicio15()">Ejecutar Ejercicio 15</button>
+    <div id="output15"></div>
+
+    <script>
+      function ejercicio15() {
+        const a1 = parseFloat(window.prompt("Introduce a1 (de a1x+b1y=c1):"));
+        const b1 = parseFloat(window.prompt("Introduce b1:"));
+        const c1 = parseFloat(window.prompt("Introduce c1:"));
+        const a2 = parseFloat(window.prompt("Introduce a2 (de a2x+b2y=c2):"));
+        const b2 = parseFloat(window.prompt("Introduce b2:"));
+        const c2 = parseFloat(window.prompt("Introduce c2:"));
+        let resultado;
+
+        if (
+          isNaN(a1) ||
+          isNaN(b1) ||
+          isNaN(c1) ||
+          isNaN(a2) ||
+          isNaN(b2) ||
+          isNaN(c2)
+        ) {
+          resultado = "Error: Introduce 6 números válidos.";
+          document.getElementById("output15").innerHTML = resultado;
+          return;
+        }
+
+        const detM = a1 * b2 - a2 * b1;
+
+        if (detM === 0) {
+          resultado = "El sistema no tiene solución única (determinante es 0).";
+        } else {
+          const detMx = c1 * b2 - c2 * b1;
+          const detMy = a1 * c2 - a2 * c1;
+
+          const x = detMx / detM;
+          const y = detMy / detM;
+
+          resultado = `Sistema:<br>
+                         ${a1}x + ${b1}y = ${c1}<br>
+                         ${a2}x + ${b2}y = ${c2}<br>
+                         Solución:<br>
+                         X = ${x.toFixed(4)}<br>
+                         Y = ${y.toFixed(4)}`;
+        }
+        document.getElementById("output15").innerHTML = resultado;
+      }
+    </script>
+
+    <h2>Ejercicio 16</h2>
+    <p>
+      16. Toma una entrada con window.prompt() para tomar una de estas figuras
+      (Cubo, Ortoedro, Esfera, Cilindro, Cono) y que pregunte sus coordenadas
+      (dimensiones) y muestre el area y el volumen.
+    </p>
+    <button onclick="ejercicio16()">Ejecutar Ejercicio 16</button>
+    <div id="ejercicio16"></div>
+
+    <script>
+      function ejercicio16() {
+        const figura = window
+          .prompt("Elige figura (Cubo, Ortoedro, Esfera, Cilindro, Cono):")
+          .toLowerCase();
+        let a, b, c, r, h, g, area, volumen;
+        let resultado = "";
+
+        switch (figura) {
+          case "cubo":
+            a = parseFloat(window.prompt("Introduce el lado (a):"));
+            if (isNaN(a)) {
+              resultado = "Valor inválido";
+              break;
+            }
+            area = 6 * Math.pow(a, 2);
+            volumen = Math.pow(a, 3);
+            resultado = `Cubo (lado ${a}):<br>Área Total: ${area.toFixed(
+              2
+            )}<br>Volumen: ${volumen.toFixed(2)}`;
+            break;
+          case "ortoedro":
+            a = parseFloat(window.prompt("Introduce el largo (a):"));
+            b = parseFloat(window.prompt("Introduce el ancho (b):"));
+            c = parseFloat(window.prompt("Introduce el alto (c):"));
+            if (isNaN(a) || isNaN(b) || isNaN(c)) {
+              resultado = "Valores inválidos";
+              break;
+            }
+            area = 2 * (a * b + b * c + a * c);
+            volumen = a * b * c;
+            resultado = `Ortoedro (a=${a}, b=${b}, c=${c}):<br>Área: ${area.toFixed(
+              2
+            )}<br>Volumen: ${volumen.toFixed(2)}`;
+            break;
+          case "esfera":
+            r = parseFloat(window.prompt("Introduce el radio (r):"));
+            if (isNaN(r)) {
+              resultado = "Valor inválido";
+              break;
+            }
+            area = 4 * Math.PI * Math.pow(r, 2);
+            volumen = (4 / 3) * Math.PI * Math.pow(r, 3);
+            resultado = `Esfera (radio ${r}):<br>Área: ${area.toFixed(
+              2
+            )}<br>Volumen: ${volumen.toFixed(2)}`;
+            break;
+          case "cilindro":
+            r = parseFloat(window.prompt("Introduce el radio (r):"));
+            h = parseFloat(window.prompt("Introduce la altura (h):"));
+            if (isNaN(r) || isNaN(h)) {
+              resultado = "Valores inválidos";
+              break;
+            }
+            area = 2 * Math.PI * r * (r + h);
+            volumen = Math.PI * Math.pow(r, 2) * h;
+            resultado = `Cilindro (r=${r}, h=${h}):<br>Área Total: ${area.toFixed(
+              2
+            )}<br>Volumen: ${volumen.toFixed(2)}`;
+            break;
+          case "cono":
+            r = parseFloat(window.prompt("Introduce el radio (r):"));
+            h = parseFloat(window.prompt("Introduce la altura (h):"));
+            if (isNaN(r) || isNaN(h)) {
+              resultado = "Valores inválidos";
+              break;
+            }
+            g = Math.hypot(r, h);
+            area = Math.PI * r * (r + g);
+            volumen = (1 / 3) * Math.PI * Math.pow(r, 2) * h;
+            resultado = `Cono (r=${r}, h=${h}, g=${g.toFixed(
+              2
+            )}):<br>Área Total: ${area.toFixed(
+              2
+            )}<br>Volumen: ${volumen.toFixed(2)}`;
+            break;
+          default:
+            resultado =
+              "Figura no reconocida. Intenta: Cubo, Ortoedro, Esfera, Cilindro, Cono.";
+        }
+        document.getElementById("ejercicio16").innerHTML = resultado;
+      }
+    </script>
+
+    <h2>Ejercicio 17</h2>
+    <p>
+      17. Toma una entrada con window.prompt() para tomar el numero de Iones
+      ($[H^{+}]$) y muestre el Ph. $pH=-log_{10}[H^{+}]$. Debe mostrar un fondo
+      de rojo intenso (muy acido) a azul intenso (muy basico).
+    </p>
+    <button onclick="ejercicio17()">Ejecutar Ejercicio 17</button>
+    <div id="output17"></div>
+
+    <script>
+      function ejercicio17() {
+        const hIon = parseFloat(
+          window.prompt(
+            "Introduce la concentración de iones [H+] (ej: 0.001 o 1e-3):"
+          )
+        );
+        const outputEl = document.getElementById("output17");
+        let resultado;
+
+        if (isNaN(hIon) || hIon < 0) {
+          resultado =
+            "Error: Introduce una concentración válida (ej: 0.001 o 1e-3).";
+          outputEl.style.backgroundColor = "transparent"; // Limpiar color
+        } else {
+          const pH = -Math.log10(hIon);
+          const pH_clamped = Math.max(0, Math.min(14, pH));
+
+          // pH 0 (ácido) -> HUE 0 (Rojo)
+          // pH 14 (básico) -> HUE 240 (Azul)
+          const hue = (pH_clamped / 14) * 240;
+
+          let estado = "";
+          if (pH < 6.9) {
+            estado = "Solución Ácida";
+          } else if (pH > 7.1) {
+            estado = "Solución Básica (Alcalina)";
+          } else {
+            estado = "Solución Neutra";
+          }
+
+          resultado = `Concentración [H+]: ${hIon.toExponential()}<br>
+                         <b>pH: ${pH.toFixed(2)}</b><br>
+                         ${estado}`;
+
+          // Aplicamos los estilos de color directamente
+          outputEl.style.backgroundColor = `hsl(${hue}, 100%, 80%)`;
+          outputEl.style.padding = "10px";
+        }
+        outputEl.innerHTML = resultado;
+      }
+    </script>
+  </body>
+</html>

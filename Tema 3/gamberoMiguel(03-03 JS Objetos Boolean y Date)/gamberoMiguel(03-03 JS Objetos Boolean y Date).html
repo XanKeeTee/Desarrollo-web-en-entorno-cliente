@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Miguel Angel Gambero - 03-03 JS Objetos Boolean y Date</h1>
+    <!-- Ejercicio 1. Crea un script que te cree la fecha de hoy a mano -->
+    <h2><u>Ejercicio 1</u></h2>
+    <div id="ejercicio1"></div>
+    <script>
+      let dia = new Date();
+
+      document.getElementById("ejercicio1").innerText =
+        dia.toLocaleString("es-ES");
+    </script>
+
+    <!-- Ejercicio 2. usa este formato de string para crear una fecha -->
+    <h2><u>Ejercicio 2</u></h2>
+    <div id="ejercicio2"></div>
+    <script>
+      let dia2 = new Date("11/06/2023");
+
+      document.getElementById("ejercicio2").innerText =
+        dia2.toLocaleDateString("es-ES");
+    </script>
+
+    <!-- Ejercicio 3. Usa este código para hacer la misma función -->
+    <h2><u>Ejercicio 3</u></h2>
+    <div id="ejercicio3"></div>
+    <script>
+      const tiempoTranscurrido = Date.now();
+      const hoy = new Date(tiempoTranscurrido);
+      // Mostrar fecha y hora actual de forma legible
+      document.getElementById("ejercicio3").innerText =
+        hoy.toLocaleString("es-ES");
+    </script>
+
+    <!--Ejercicio 4. Crea un script que te lea tu fecha de nacimiento y te calcule cuantos días llevas vivo.
+        Debes restar las dos fechas en milisegundos y dividir el numero entre (1000*60*60*24)
+        para mostrar las fechas puedes usar la función-->
+    <h2><u>Ejercicio 4</u></h2>
+    <button onclick="ejercicio4()">Ejercicio 4</button>
+    <div id="resultado4"></div>
+    <script>
+      function ejercicio4() {
+        const dia = prompt("Dime tu día de nacimiento (1-31):");
+        const mes = prompt("Dime tu mes de nacimiento (1-12):");
+        const anno = prompt("Dime tu año de nacimiento (ej. 1990):");
+
+        const fechaUsuario = new Date(anno, mes - 1, dia);
+        const ahora = new Date();
+
+        const diferenciaMs = ahora.getTime() - fechaUsuario.getTime();
+        const diasVividos = Math.floor(diferenciaMs / (1000 * 60 * 60 * 24));
+
+        const fechaFormateada = fechaUsuario.toLocaleDateString("es-ES");
+        document.getElementById("resultado4").innerHTML = `
+          <p>Fecha de nacimiento: ${fechaFormateada}</p>
+          <p>Días vividos: ${diasVividos.toLocaleString("es-ES")}</p>
+        `;
+      }
+    </script>
+
+    <!-- Ejercicio 5. Crea un script que te lea tu año de nacimiento y pais y sexo) . te calcule cuantos años te quedan
+        para llegar a la edad media de esperanza de vida tu país (debes hacer un if )-->
+
+    <!-- Pais Media Hombre Mujer
+            Japón 84,3 81,5 86,9
+            Suiza 83,4 81,8 85,1
+            España 83,2 80,7 85,7
+            Italia 83,0 80,9 84,9
+            Irak 72,4 69,9 75,0
+            Guinea Ecuatorial 62,2 60,9 63,6
+            Somalia 56,5 54,0 59,2-->
+
+    <h2><u>Ejercicio 5</u></h2>
+    <button onclick="ejercicio5()">Ejercicio 5</button>
+    <div id="resultado5"></div>
+
+    <script>
+      function ejercicio5(){
+        const esperanzaObj = {
+            japon: { hombre: 81.5, mujer: 86.9 },
+            suiza: { hombre: 81.8, mujer: 85.1 },
+            españa: { hombre: 80.7, mujer: 85.7 },
+            italia: { hombre: 80.9, mujer: 84.9 },
+            irak: { hombre: 69.9, mujer: 75.0 },
+            "guinea ecuatorial": { hombre: 60.9, mujer: 63.6 },
+            somalia: { hombre: 54.0, mujer: 59.2 }
+        };
+
+        const annoInput = parseInt(prompt("Digame su año de nacimiento: "));
+        const paisInput = (prompt("Digame el pais de nacimiento: ") || '').trim().toLowerCase();
+        const sexoInput = (prompt("Digame su sexo: ") || '').trim().toLowerCase();
+
+        let datos = null;
+        switch(paisInput){
+          case 'japon':
+            datos = esperanzaObj.japon;
+            break;
+          case 'suiza':
+            datos = esperanzaObj.suiza;
+            break;
+          case 'españa':
+            datos = esperanzaObj['españa'];
+            break;
+          case 'italia':
+            datos = esperanzaObj.italia;
+            break;
+          case 'irak':
+            datos = esperanzaObj.irak;
+            break;
+          case 'guinea ecuatorial':
+            datos = esperanzaObj['guinea ecuatorial'];
+            break;
+          case 'somalia':
+            datos = esperanzaObj.somalia;
+            break;
+          default:
+            datos = null;
+        }
+
+        let esperanzaValor;
+        if (datos) {
+          if (sexoInput == "h") {
+            esperanzaValor = datos.hombre;
+          } else if (sexoInput == "m") {
+            esperanzaValor = datos.mujer;
+          } else {
+            esperanzaValor = (datos.hombre + datos.mujer) / 2;
+          }
+        }
+        // calcular edad correctamente
+        const hoy = new Date();
+        const edadUsuario = hoy.getFullYear() - annoInput;
+        // asegurar que esperanzaValor sea numérico antes de restar
+        const esperanzaNum = typeof esperanzaValor === 'number' ? esperanzaValor : 0;
+        const diferenciaEdad = esperanzaNum - edadUsuario;
+        
+        document.getElementById("resultado5").innerHTML = `
+        <p>La esperanza de vida en ${paisInput} es de ${esperanzaNum}</p>
+        <p>Te faltan ${diferenciaEdad.toFixed(1)} años para llegar a la media de edad</p>
+        `;
+      }
+    </script>
+
+    <!-- Ejercicio 6. Instala la libreria datejs y ejecuta los siguientes códigos de ejemplo
+        <script type="text/javascript" src="date.js"></script>
+        y muestralos mediante un document.write junto con el comentario-->
+
+    <h2><u>Ejercicio 6</u></h2>
+    <script type="text/javascript" src="./datejs/date.js"></script>
+    <script>
+      // Salida mínima: mantenemos document.write como pediste, pero cargando antes la librería
+      document.write(Date.today()); // Returns today's date, with time set to 00:00 (start of day).
+      document.write('<br>' + Date.today().next().friday()); // next Friday
+      document.write('<br>' + Date.today().last().monday()); // previous Monday
+
+      document.write('<br>' + new Date().next().march()); // Returns the date of the next March.
+      document.write('<br>' + new Date().last().week()); // Returns the date one week ago.
+      document.write('<br>' + Date.today().is().friday()); // Returns true|false if the day-of-week matches.
+      document.write('<br>' + Date.today().is().fri()); // Abbreviated day names.
+      document.write('<br>' + Date.today().is().november()); // Month names.
+      document.write('<br>' + Date.today().is().nov()); // Abbreviated month names.
+      document.write('<br>' + Date.today().is().weekday()); // Is today a weekday?
+      document.write('<br>' + Date.today().addDays(1)); // Add one day (+1).
+      document.write('<br>' + Date.today().addMonths(-3)); // Subtract three months (-3).
+      document.write('<br>' + Date.today().add(1).day()); // Add one (+1) day. Supports all date parts
+      document.write('<br>' + Date.today().add(-3).months()); // Subtract three (-3) months.
+      document.write('<br>' + (1).day().fromNow()); // One (1) day from now.
+      document.write('<br>' + (3).months().ago()); // Three (3) months ago.
+      var n = 6; n.months().fromNow(); // Six (6) months from now.
+      document.write('<br>' + Date.monday()); // Returns Monday of the current week.
+      document.write('<br>' + Date.mon()); // Abbreviated version of Date.monday()
+      document.write('<br>' + Date.march()); // Returns March 1st of this year.
+      document.write('<br>' + Date.mar()); // Abbreviated version of Date.march()
+      document.write('<br>' + Date.today().first().thursday()); // Returns the first Thursday of the current month.
+      document.write('<br>' + Date.today().second().thursday());// Returns the second Thursday of the current month.
+      document.write('<br>' + Date.march().third().thursday()); // Returns the third Thursday in March of the current year.
+      document.write('<br>' + Date.october().fourth().sunday());// Returns the fourth Sunday in October.
+      document.write('<br>' + Date.today().fifth().sunday()); // Returns the fifth Sunday in the current month,
+      document.write('<br>' + Date.october().final().sunday()); // Returns the final Sunday in October.
+      document.write('<br>' + Date.january().first().monday()); // Returns the first Monday of the current year.
+      document.write('<br>' + Date.december().final().friday());// Returns the last Friday of the current year.
+      document.write('<br>' + Date.today().at("6:15pm")); // Returns todays date at 6:15pm.
+      var time = {hour:18, minute:15}; Date.today().at(time); // Set time with a config object.
+      var birthDayParty = {month: 1, day: 20, hour: 20, minute: 30};
+      document.write('<br>' + Date.today().set(birthDayParty));// Set date and time with a config object.
+    </script>
+  </body>
+</html>
