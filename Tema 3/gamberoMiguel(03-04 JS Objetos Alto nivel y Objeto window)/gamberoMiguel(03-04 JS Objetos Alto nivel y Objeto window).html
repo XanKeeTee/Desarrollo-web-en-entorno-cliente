@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!--Ejercicio 1. Crea un script que lea dos números con prompt y que cree una ventanas nueva con el tamaño indico
+        Debes usar var subVentana=window.open("nueva.html","nueva","height=800,width=600"); -->
+    <div>
+      <h2><u>Ejercicio1</u></h2>
+      <button onclick="ejercicio1()">Ejercicio1</button>
+    </div>
+    <script>
+      let subVentana;
+      function ejercicio1() {
+        const altura = Number(prompt("Digame la altura: "));
+        const anchura = Number(prompt("Digame la anchura: "));
+
+        subVentana = window.open(
+          "nueva.html",
+          "nueva",
+          "height=" + altura + ",width=" + anchura
+        );
+      }
+    </script>
+
+    <!--Ejercicio 2. Modifica el script anterior para cerrarla -->
+    <div>
+      <h2><u>Ejercicio2</u></h2>
+      <button onclick="ejercicio2()">Ejercicio2</button>
+    </div>
+    <script>
+      function ejercicio2() {
+        subVentana.close();
+      }
+    </script>
+
+    <!--Ejercicio 3. Modifica el script anterior para comprobar si esta abierta o cerrada-->
+    <div>
+      <h2><u>Ejercicio3</u></h2>
+      <button onclick="ejercicio3()">Ejercicio3</button>
+    </div>
+    <script>
+      function ejercicio3() {
+        if (subVentana && !subVentana.closed) {
+          subVentana.close();
+        } else {
+          alert("La ventana no esta abierta");
+        }
+      }
+    </script>
+
+    <!-- Ejercicio 4. Crea un script que lea una url con prompt y que la abra en una nueva ventana y que muestre sus
+        siguientes propiedades.
+            defaultStatus
+            length
+            location
+            name-->
+    <div>
+      <h2><u>Ejercicio4</u></h2>
+      <button onclick="ejercicio4()">Ejercicio4</button>
+      <div id="salida4"></div>
+    </div>
+    <script>
+      let ventana4;
+      function ejercicio4() {
+        const url = prompt("Ponga la url: ");
+        const nombre = prompt(
+          "Nombre de la ventana (dejar vacío para ninguno): "
+        );
+
+        ventana4 = window.open(url, nombre);
+
+        document.getElementById("salida4").innerHTML = `
+                        <p>URL solicitada: ${url}</p>
+                        <p>location.href de la ventana: ${locationHref}</p>
+                        <p>Nombre de la ventana (window.name): ${ventana4.name}</p>
+                        <p>Length (nº de frames): ${ventana4.length}</p>
+                        `;
+      }
+    </script>
+
+    <!-- Ejercicio 5. Muestra una ventana emergente de alerta con el mensaje “ALERTA Te estan Robando el banco”
+        y después Muestra una ventana emergente de alerta con el mensaje “Estas de acuerdo?” y dependiendo
+        de él Escribe de acuerdo o no.-->
+
+    <h2><u>Ejercicio 5</u></h2>
+    <button onclick="ejercicio5()">Ejercicio5</button>
+    <div id="ejercicio5"></div>
+    <script>
+      function ejercicio5() {
+        alert("ALERTA Te estan Robando el banco");
+
+        let estaDeAcuerdo = confirm("Estas de acuerdo?");
+
+        const salida = document.getElementById("ejercicio5");
+        if (estaDeAcuerdo) {
+          salida.innerHTML = "El usuario está de acuerdo.";
+        } else {
+          salida.innerHTML = "El usuario no está de acuerdo.";
+        }
+      }
+    </script>
+
+    <!-- Ejercicio 6. Usa este código para crear un ejemplo de clearInterval() Resetea el cronómetro ajustado con
+        setInterval() y setInterval( funcion, milisegundos)-->
+
+    <h2><u>Ejercicio 6</u></h2>
+    <button onclick="ejercicio6Start()">Iniciar</button>
+    <button class="stop" onclick="ejercicio6Stop()">Parar</button>
+    <div id="ejercicio6"></div>
+    <script>
+      let intervaloHello;
+
+      function dihola() {
+        document.getElementById("ejercicio6").innerHTML += "Hello ";
+      }
+
+      function ejercicio6Start() {
+        intervaloHello = setInterval(dihola, 500);
+      }
+
+      function ejercicio6Stop() {
+        clearInterval(intervaloHello);
+        document.getElementById("ejercicio6").innerHTML +=
+          "<br><b>--- PARADO ---</b><br>";
+      }
+    </script>
+
+    <!-- Ejercicio 7. Modificalo para que te muestre la hora cada segundo -->
+
+    <h2><u>Ejercicio 7</u></h2>
+    <div id="ejercicio7">Cargando...</div>
+    <script>
+      function actualizarReloj() {
+        const date = new Date();
+        const horaString = date.toLocaleTimeString();
+        document.getElementById("ejercicio7").innerHTML = horaString;
+      }
+
+      actualizarReloj();
+
+      setInterval(actualizarReloj, 1000);
+    </script>
+
+    <h2><u>Ejercicios 8, 9 y 10</u></h2>
+    <button onclick="iniciarIntervalo()">Start</button>
+    <button class="stop" onclick="stopColor()">Stop</button>
+
+    <script>
+      let myInterval;
+      let color1 = "yellow";
+      let color2 = "pink"; 
+
+      function iniciarIntervalo() {
+        if (myInterval) {
+          clearInterval(myInterval);
+        }
+
+        const inputUsuario = prompt(
+          "Introduce el intervalo (ms) y dos colores, separados por comas:",
+          "500,yellow,pink"
+        );
+
+        if (inputUsuario) {
+
+          const partes = inputUsuario.split(",");
+
+          if (partes.length === 3 && !isNaN(partes[0])) {
+            const intervalo = parseInt(partes[0].trim());
+            color1 = partes[1].trim();
+            color2 = partes[2].trim();
+
+            myInterval = setInterval(setColor, intervalo);
+          } else {
+            alert(
+              "Formato incorrecto. Usa: ms,color1,color2 (ej: 500,red,blue)"
+            );
+          }
+        }
+      }
+
+      function setColor() {
+        let x = document.body;
+        x.style.backgroundColor =
+          x.style.backgroundColor == color1 ? color2 : color1;
+      }
+
+      function stopColor() {
+        clearInterval(myInterval);
+        document.body.style.backgroundColor = "";
+      }
+    </script>
+  </body>
+</html>

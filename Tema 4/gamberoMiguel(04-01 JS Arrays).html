@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- Ejercicio 1. Realiza un ejercicio que te cree un array con 50 números random (Math.random) con un bucle y
+        que te calcule el mayor menor, media.-->
+    <h2><u>Ejercicio 1</u></h2>
+    <div id="resultado1"></div>
+    <script>
+        let array = [];
+        let min = 0;
+        let max = 0;
+        let media = 0;
+
+        for (let i = 0;i<50;i++){
+            array[i] = parseInt(Math.random()*50);
+
+            if (array[i]>max){
+                max = array[i];
+            }
+        }   
+
+        document.getElementById("resultado1").innerHTML = `
+        <p>El numero maximo en la lista es el ${max}</p>
+        `;
+
+    </script>
+</body>
+</html>
