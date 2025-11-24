@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h2>Ejercicio 1</h2>
+    <div id="ejercicio1" class="resultado"></div>
+    <script>
+      let inventario = Array.of(1, 2, 3, 4, 5);
+
+      inventario.fill(7, 2, 4);
+
+      inventario.unshift(0, 0);
+
+      inventario.pop();
+
+      let nuevoLote = [10, 20, 30];
+      inventario = inventario.concat(nuevoLote);
+
+      document.getElementById("ejercicio1").innerHTML =
+        "Inventario final: [" + inventario.join(", ") + "]";
+    </script>
+
+    <h2>Ejercicio 2</h2>
+    <div id="ejercicio2" class="resultado"></div>
+    <script>
+      let empleados = Array.from("abcdef");
+
+      let tercerEmpleado = empleados.at(2);
+      let ultimoEmpleado = empleados.at(-1);
+
+      empleados = empleados.with(1, "X");
+
+      empleados.shift();
+
+      empleados.push("Y", "Z");
+
+      document.getElementById("ejercicio2").innerHTML =
+        "Tercero: " +
+        tercerEmpleado +
+        "<br>" +
+        "Último: " +
+        ultimoEmpleado +
+        "<br>" +
+        "Lista empleados: [" +
+        empleados.join(", ") +
+        "]";
+    </script>
+
+    <h2>Ejercicio 3</h2>
+    <div id="ejercicio3" class="resultado"></div>
+    <script>
+      let notas = [10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+
+      notas.fill(99, 4, 8);
+
+      notas.unshift(5, 6, 7);
+
+      notas.pop();
+      notas.shift();
+
+      document.getElementById("ejercicio3").innerHTML =
+        "Calificaciones: [" + notas.join(", ") + "]";
+    </script>
+
+    <h2>Ejercicio 4</h2>
+    <div id="ejercicio4" class="resultado"></div>
+    <script>
+      let precios = [100, 200, 300, 400];
+
+      precios.push(500, 600);
+
+      precios.shift();
+
+      precios = precios.with(2, 999);
+
+      precios = precios.concat([700, 800, 900]);
+
+      document.getElementById("ejercicio4").innerHTML =
+        "Precios finales: [" + precios.join(", ") + "]";
+    </script>
+
+    <h2>Ejercicio 5</h2>
+    <div id="ejercicio5" class="resultado"></div>
+    <script>
+      let textoArr = Array.from("hello world");
+
+      let quintoChar = textoArr.at(4);
+      let ultimoChar = textoArr.at(-1);
+
+      textoArr.unshift("#");
+
+      textoArr.fill("*", 6, 7);
+
+      textoArr = textoArr.concat(["!", "!", "!"]);
+
+      document.getElementById("ejercicio5").innerHTML =
+        "Quinto original: " +
+        quintoChar +
+        ", Último original: " +
+        ultimoChar +
+        "<br>" +
+        "Texto procesado: " +
+        textoArr.join("");
+    </script>
+
+    <h2>Ejercicio 6</h2>
+    <div id="ejercicio6" class="resultado"></div>
+    <script>
+      let pedidos = [1, 2, 3, 4, 5, 6];
+
+      let pedido3 = pedidos.at(2);
+      let pedidoUlt = pedidos.at(-1);
+
+      pedidos = pedidos.with(0, 0);
+
+      pedidos.fill(8, 1, 4);
+
+      pedidos.shift();
+      pedidos.pop();
+
+      pedidos.push(7, 8, 9);
+
+      document.getElementById("ejercicio6").innerHTML =
+        "Consulta (3º y Ult): " +
+        pedido3 +
+        ", " +
+        pedidoUlt +
+        "<br>" +
+        "Pedidos finales: [" +
+        pedidos.join(", ") +
+        "]";
+    </script>
+  </body>
+</html>
