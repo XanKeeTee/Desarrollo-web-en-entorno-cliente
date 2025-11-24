@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Ejercicio 1</h2>
+    <div id="ejercicio1" class="resultado"></div>
+    <script>
+      var alumno = { nombre: "Luis", nota: 7, aprobado: false };
+
+      Object.freeze(alumno);
+
+      alumno.nota = 10;      
+      alumno.edad = 20;   
+      delete alumno.aprobado;
+
+      document.getElementById("ejercicio1").innerHTML = 
+        "Nombre: " + alumno.nombre + "<br>" +
+        "Nota (debe ser 7): " + alumno.nota + "<br>" +
+        "Aprobado (debe ser false): " + alumno.aprobado;
+    </script>
+
+    <h2>Ejercicio 2</h2>
+    <div id="ejercicio2" class="resultado"></div>
+    <script>
+      var config = { volumen: 50, brillo: 80 };
+      
+      config.contraste = 100;
+
+      Object.seal(config);
+
+      config.volumen = 20;
+
+      config.color = "azul";
+      delete config.brillo;
+
+      document.getElementById("ejercicio2").innerHTML = 
+        "Volumen (cambió a 20): " + config.volumen + "<br>" +
+        "Brillo (sigue existiendo): " + config.brillo + "<br>" +
+        "Color (undefined): " + config.color;
+    </script>
+
+    <h2>Ejercicio 3</h2>
+    <div id="ejercicio3" class="resultado"></div>
+    <script>
+      function congelarTodo(obj) {
+        var propiedades = Object.keys(obj);
+        for (var i = 0; i < propiedades.length; i++) {
+          var prop = propiedades[i];
+          if (typeof obj[prop] === 'object' && obj[prop] !== null) {
+            congelarTodo(obj[prop]);
+          }
+        }
+        return Object.freeze(obj);
+      }
+
+      var usuario = {
+        nombre: "Ana",
+        preferencias: { tema: "oscuro" }
+      };
+
+      congelarTodo(usuario);
+
+      usuario.preferencias.tema = "claro";
+
+      document.getElementById("ejercicio3").innerHTML = 
+        "Tema (debe seguir siendo oscuro): " + usuario.preferencias.tema;
+    </script>
+
+    <h2>Ejercicio 4</h2>
+    <div id="ejercicio4" class="resultado"></div>
+    <script>
+      var coche1 = { marca: "Ford", anio: 2010 }; 
+      var coche2 = { marca: "Ford", anio: 2010 }; 
+
+      Object.freeze(coche1);
+      Object.seal(coche2);
+
+      coche1.anio = 2020; 
+      coche2.anio = 2020; 
+
+      document.getElementById("ejercicio4").innerHTML = 
+        "Año Coche 1 (Freeze): " + coche1.anio + "<br>" +
+        "Año Coche 2 (Seal): " + coche2.anio;
+    </script>
+
+    <h2>Ejercicio 5</h2>
+    <div id="ejercicio5" class="resultado"></div>
+    <script>
+      var estado = {
+        app: "Mi App",
+        ajustes: { tema: "claro" }
+      };
+
+      Object.freeze(estado);
+
+      estado.app = "Otra App";          
+      estado.ajustes.tema = "oscuro";   
+
+      document.getElementById("ejercicio5").innerHTML = 
+        "Nombre App: " + estado.app + "<br>" +
+        "Tema Ajustes: " + estado.ajustes.tema;
+    </script>
+
+    <h2>Ejercicio 6</h2>
+    <div id="ejercicio6" class="resultado"></div>
+    <script>
+      var libro = { titulo: "1984", autor: "Orwell" };
+
+      Object.seal(libro);
+
+      function actualizarLibro(nuevoTitulo) {
+        libro.titulo = nuevoTitulo; 
+        libro.paginas = 200;       
+        delete libro.autor;         
+      }
+
+      actualizarLibro("Rebelión en la granja");
+
+      document.getElementById("ejercicio6").innerHTML = 
+        "Título: " + libro.titulo + "<br>" +
+        "Autor: " + libro.autor + "<br>" +
+        "Páginas: " + libro.paginas;
+    </script>
+</body>
+</html>
