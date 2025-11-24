@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    h2 {
+      text-decoration: underline;
+    }
+  </style>
+  <body>
+    <h2>Ejercicio 1</h2>
+    <div id="ejercicio1"></div>
+    <script>
+      var datos = new Array();
+      datos[0] = new Array("Cristina", "Seguridad", 24);
+      datos[1] = new Array("Catalina", "Bases de Datos", 17);
+      datos[2] = new Array("Vieites", "Sistemas Informáticos", 28);
+      datos[3] = new Array("Benjamin", "Redes", 26);
+      
+      var nombres = datos
+        .map(function (persona) {
+          return persona[0];
+        })
+        .sort();
+
+      var salida1 = "<ol>";
+      for (let i = 0; i < nombres.length; i++) {
+        salida1 += "<li>" + nombres[i] + "</li>";
+      }
+      salida1 += "</ol>";
+      document.getElementById("ejercicio1").innerHTML = salida1;
+    </script>
+
+    <h2>Ejercicio 2</h2>
+    <div id="ejercicio2"></div>
+
+    <script>
+      var numeros = new Array(4);
+      var salida2 = "";
+
+      for (let i = 0; i < 4; i++) {
+        numeros[i] = new Array(5); 
+        for (let j = 0; j < 5; j++) {
+          numeros[i][j] = Math.floor(Math.random() * 10);
+          salida2 += numeros[i][j] + " ";
+        }
+        salida2 += "<br>";
+      }
+
+      document.getElementById("ejercicio2").innerHTML = salida2;
+    </script>
+
+    <h2>Ejercicio 3</h2>
+    <div id="ejercicio3"></div>
+    <script>
+      var tabla = new Array(11);
+      let salida3 = "";
+
+      for (var i = 1; i <= 10; i++) {
+        tabla[i] = new Array(11);
+        for (var j = 1; j <= 10; j++) {
+          tabla[i][j] = i * j;
+          salida3 += i * j + "\t";
+        }
+        salida3 += "<br>";
+      }
+
+      document.getElementById("ejercicio3").innerHTML = salida3;
+    </script>
+
+    <h2>Ejercicio 4</h2>
+    <div id="ejercicio4"></div>
+    <script>
+      var tablaOriginal = [];
+      var salida4 = "";
+
+      for (var i = 0; i < 5; i++) {
+        tablaOriginal[i] = [];
+        for (var j = 0; j < 5; j++) {
+          tablaOriginal[i][j] = (i + 1) * (j + 1);
+        }
+      }
+
+      let tablaMas2 = tablaOriginal.map(function (fila) {
+        return fila.map(function (valor) {
+          return valor + 2;
+        });
+      });
+
+      salida4 = tablaMas2.map((fila) => fila.join("\t")).join("<br>");
+      document.getElementById("ejercicio4").innerHTML = salida4;
+    </script>
+
+    <h2>Ejercicio 5</h2>
+    <div id="ejercicio5"></div>
+    <script>
+      var tabla3D = [];
+      var salida5 = "";
+      for (var i = 1; i <= 3; i++) {
+        tabla3D[i] = [];
+        salida5 += "<strong>Tabla Profundidad " + i + ":</strong><br>";
+
+        for (var j = 1; j <= 3; j++) {
+          tabla3D[i][j] = [];
+          for (var k = 1; k <= 3; k++) {
+            var valor = i * j * k;
+            tabla3D[i][j][k] = valor;
+            salida5 += valor + " ";
+          }
+          salida5 += "<br>";
+        }
+        salida5 += "<br>";
+      }
+      document.getElementById("ejercicio5").innerHTML = salida5;
+    </script>
+
+    <h2>Ejercicio 6</h2>
+    <div id="ejercicio6"></div>
+    <script>
+      var datosPoblacion = [
+        [
+          1,
+          "Madrid",
+          3334730,
+          3273049,
+          2882860,
+          3120732,
+          3188297,
+          3146071,
+          "Comunidad de Madrid",
+        ],
+        [
+          2,
+          "Barcelona",
+          1664182,
+          1619337,
+          1496266,
+          1707286,
+          1754900,
+          1745142,
+          "Cataluña",
+        ],
+        [
+          3,
+          "Valencia",
+          800215,
+          809267,
+          739014,
+          758738,
+          751734,
+          653690,
+          "Comunidad Valenciana",
+        ],
+        [
+          4,
+          "Sevilla",
+          691395,
+          704198,
+          700716,
+          678218,
+          653833,
+          548072,
+          "Andalucía",
+        ],
+        [
+          5,
+          "Zaragoza",
+          681877,
+          675121,
+          604631,
+          592686,
+          590750,
+          479845,
+          "Aragón",
+        ],
+        [
+          6,
+          "Málaga",
+          578460,
+          568507,
+          531565,
+          560495,
+          503251,
+          374452,
+          "Andalucía",
+        ],
+        [
+          7,
+          "Murcia",
+          459403,
+          441345,
+          357166,
+          322911,
+          288631,
+          243759,
+          "Región de Murcia",
+        ],
+        [
+          8,
+          "Palma",
+          422587,
+          404681,
+          333925,
+          325120,
+          304422,
+          234098,
+          "Islas Baleares",
+        ],
+        [
+          9,
+          "Las Palmas",
+          381223,
+          383308,
+          358518,
+          373846,
+          366454,
+          287038,
+          "Canarias",
+        ],
+        [
+          10,
+          "Bilbao",
+          350184,
+          353187,
+          354271,
+          383798,
+          433030,
+          410490,
+          "País Vasco",
+        ],
+      ];
+
+      document.getElementById("ejercicio6").innerHTML =
+        "Datos cargados en variable 'datosPoblacion': " +
+        datosPoblacion.length +
+        " registros.";
+    </script>
+
+    <h2>Ejercicio 7</h2>
+    <div id="ejercicio7"></div>
+    <script>
+      function calcularMediaAnual(datos) {
+        var indicesAnios = [2, 3, 4, 5, 6, 7];
+        var etiquetasAnios = ["2020", "2010", "2000", "1990", "1981", "1970"];
+        var htmlResultado = "<ul>";
+
+        for (var k = 0; k < indicesAnios.length; k++) {
+          var suma = 0;
+          var indiceColumna = indicesAnios[k];
+
+          for (var i = 0; i < datos.length; i++) {
+            suma += datos[i][indiceColumna];
+          }
+
+          var media = suma / datos.length;
+          htmlResultado +=
+            "<li>Media año " +
+            etiquetasAnios[k] +
+            ": <b>" +
+            Math.round(media) +
+            "</b> habitantes</li>";
+        }
+        htmlResultado += "</ul>";
+        return htmlResultado;
+      }
+
+      document.getElementById("ejercicio7").innerHTML =
+        calcularMediaAnual(datosPoblacion);
+    </script>
+
+    <h2>Ejercicio 8</h2>
+    <div id="ejercicio8"></div>
+    <script>
+      function mostrarTabla(tablaDatos, idContenedor) {
+        var html = "<table>";
+        html +=
+          "<thead><tr><th>#</th><th>Ciudad</th><th>2020</th><th>2010</th><th>2000</th><th>1990</th><th>1981</th><th>1970</th><th>Comunidad</th></tr></thead>";
+        html += "<tbody>";
+
+        tablaDatos.forEach(function (fila) {
+          html += "<tr>";
+          fila.forEach(function (celda) {
+            html += "<td>" + celda + "</td>";
+          });
+          html += "</tr>";
+        });
+
+        html += "</tbody></table>";
+        document.getElementById(idContenedor).innerHTML = html;
+      }
+
+      mostrarTabla(datosPoblacion, "ejercicio8");
+    </script>
+
+    <h2>Ejercicio 9</h2>
+    <p>Resolviendo sistema de ejemplo 3x3:</p>
+    <div id="ejercicio9"></div>
+    <script>
+      function sarrus(m) {
+        var dp =
+          m[0][0] * m[1][1] * m[2][2] +
+          m[0][1] * m[1][2] * m[2][0] +
+          m[0][2] * m[1][0] * m[2][1];
+        var ds =
+          m[0][2] * m[1][1] * m[2][0] +
+          m[0][1] * m[1][0] * m[2][2] +
+          m[0][0] * m[1][2] * m[2][1];
+        return dp - ds;
+      }
+
+      function resolverSistema(matrizA, matrizB) {
+        var detA = sarrus(matrizA);
+
+        if (detA === 0)
+          return "El sistema no tiene solución única (Determinante = 0).";
+
+        var matX = [
+          [matrizB[0], matrizA[0][1], matrizA[0][2]],
+          [matrizB[1], matrizA[1][1], matrizA[1][2]],
+          [matrizB[2], matrizA[2][1], matrizA[2][2]],
+        ];
+
+        var matY = [
+          [matrizA[0][0], matrizB[0], matrizA[0][2]],
+          [matrizA[1][0], matrizB[1], matrizA[1][2]],
+          [matrizA[2][0], matrizB[2], matrizA[2][2]],
+        ];
+
+        var matZ = [
+          [matrizA[0][0], matrizA[0][1], matrizB[0]],
+          [matrizA[1][0], matrizA[1][1], matrizB[1]],
+          [matrizA[2][0], matrizA[2][1], matrizB[2]],
+        ];
+
+        var x = sarrus(matX) / detA;
+        var y = sarrus(matY) / detA;
+        var z = sarrus(matZ) / detA;
+
+        return (
+          "x = " +
+          x.toFixed(2) +
+          "<br>y = " +
+          y.toFixed(2) +
+          "<br>z = " +
+          z.toFixed(2)
+        );
+      }
+
+      var A = [
+        [2, 1, 1],
+        [1, -1, -1],
+        [1, 2, 1],
+      ];
+      var B = [3, 0, 0];
+
+      document.getElementById("ejercicio9").innerHTML = resolverSistema(A, B);
+    </script>
+  </body>
+</html>
