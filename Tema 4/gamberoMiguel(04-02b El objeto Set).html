@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h2>Ejercicio 1</h2>
+    <div id="ejercicio1" class="resultado"></div>
+    <script>
+      var personajesSet = new Set();
+      
+      personajesSet.add("Aragorn");
+      personajesSet.add("Legolas");
+      personajesSet.add("Gimli");
+      personajesSet.add("Gandalf");
+      personajesSet.add("Frodo");
+
+      document.getElementById("ejercicio1").innerHTML =
+        "Set creado: " + Array.from(personajesSet).join(", ");
+    </script>
+
+    <h2>Ejercicio 2</h2>
+    <div id="ejercicio2" class="resultado"></div>
+    <script>
+      var listaHTML = "<ul>";
+
+      for (let personaje of personajesSet) {
+        console.log(personaje);
+        listaHTML += "<li>" + personaje + "</li>";
+      }
+      listaHTML += "</ul>";
+
+      document.getElementById("ejercicio2").innerHTML = listaHTML;
+    </script>
+
+    <h2>Ejercicio 3</h2>
+    <div id="ejercicio3" class="resultado"></div>
+    <script>
+      function verificarExistencia(conjunto, nombre) {
+        return conjunto.has(nombre);
+      }
+
+      // Pruebas
+      var check1 = verificarExistencia(personajesSet, "Gandalf");
+      var check2 = verificarExistencia(personajesSet, "Sauron");
+
+      document.getElementById("ejercicio3").innerHTML =
+        "¿Existe Gandalf? " + check1 + "<br>" + "¿Existe Sauron? " + check2;
+    </script>
+
+    <h2>Ejercicio 4</h2>
+    <div id="ejercicio4" class="resultado"></div>
+    <script>
+      function obtenerTotal(conjunto) {
+        return conjunto.size;
+      }
+
+      document.getElementById("ejercicio4").innerHTML =
+        "Total de personajes en el Set: " + obtenerTotal(personajesSet);
+    </script>
+
+    <h2>Ejercicio 5</h2>
+    <div id="ejercicio5" class="resultado"></div>
+    <script>
+      function agregarUnico(conjunto, nuevoPersonaje) {
+        if (!conjunto.has(nuevoPersonaje)) {
+          conjunto.add(nuevoPersonaje);
+          return "Añadido: " + nuevoPersonaje;
+        } else {
+          return "El personaje " + nuevoPersonaje + " ya existe.";
+        }
+      }
+
+      var res5 = "";
+      res5 += agregarUnico(personajesSet, "Sam") + "<br>";
+      res5 += agregarUnico(personajesSet, "Aragorn") + "<br>";
+
+      res5 +=
+        "<strong>Set actualizado:</strong> " +
+        Array.from(personajesSet).join(", ");
+      document.getElementById("ejercicio5").innerHTML = res5;
+    </script>
+
+    <h2>Ejercicio 6</h2>
+    <div id="ejercicio6" class="resultado"></div>
+    <script>
+      function eliminarPersonaje(conjunto, personaje) {
+        var eliminado = conjunto.delete(personaje);
+
+        if (eliminado) {
+          return (
+            "El personaje '" + personaje + "' fue eliminado correctamente."
+          );
+        } else {
+          return "El personaje '" + personaje + "' no estaba en el conjunto.";
+        }
+      }
+
+      var res6 = "";
+      res6 += eliminarPersonaje(personajesSet, "Legolas") + "<br>";
+      res6 += eliminarPersonaje(personajesSet, "Saruman");
+      res6 +=
+        "<br><strong>Set actual:</strong> " +
+        Array.from(personajesSet).join(", ");
+      document.getElementById("ejercicio6").innerHTML = res6;
+    </script>
+
+    <h2>Ejercicio 7</h2>
+    <div id="ejercicio7" class="resultado"></div>
+    <script>
+      var set1 = new Set(["Frodo", "Sam", "Merry", "Pippin"]);
+      var set2 = new Set(["Aragorn", "Boromir", "Frodo"]);
+
+      function combinarSets(s1, s2) {
+        var combinado = new Set([...s1, ...s2]);
+        return combinado;
+      }
+
+      var unionSet = combinarSets(set1, set2);
+
+      var res7 = "Set 1: " + Array.from(set1).join(", ") + "<br>";
+      res7 += "Set 2: " + Array.from(set2).join(", ") + "<br>";
+      res7 +=
+        "<strong>Unión (Sin duplicados):</strong> " +
+        Array.from(unionSet).join(", ");
+
+      document.getElementById("ejercicio7").innerHTML = res7;
+    </script>
+  </body>
+</html>

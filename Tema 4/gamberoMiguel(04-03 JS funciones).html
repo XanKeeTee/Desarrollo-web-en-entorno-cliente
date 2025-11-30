@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h2>Ejercicio 1</h2>
+    <div id="ejercicio1"></div>
+    <script>
+      function Ej1Trigonometica(grados, tipo) {
+        var radianes = grados * (Math.PI / 180);
+        var resultado = 0;
+
+        switch (tipo.toLowerCase()) {
+          case "cos":
+            resultado = Math.cos(radianes);
+            break;
+          case "sen":
+          case "sin":
+            resultado = Math.sin(radianes);
+            break;
+          case "tan":
+            resultado = Math.tan(radianes);
+            break;
+          default:
+            return "Operación no válida";
+        }
+        return resultado.toFixed(4);
+      }
+
+      var res1 = "Coseno de 0°: " + Ej1Trigonometica(0, "cos") + "<br>";
+      res1 += "Seno de 90°: " + Ej1Trigonometica(90, "sen") + "<br>";
+      res1 += "Tangente de 45°: " + Ej1Trigonometica(45, "tan");
+
+      document.getElementById("ejercicio1").innerHTML = res1;
+    </script>
+
+    <h2>Ejercicio 2</h2>
+    <div id="algo"></div>
+    <script>
+      function Ej2JS(listaString, id) {
+        var arrayItems = listaString.split(",");
+        var html = "<ol>";
+
+        for (var i = 0; i < arrayItems.length; i++) {
+          html += "<li>" + arrayItems[i].trim() + "</li>";
+        }
+        html += "</ol>";
+
+        document.getElementById(id).innerHTML = html;
+      }
+
+      Ej2JS("hola, adios, bien, Hasta, mañana", "algo");
+    </script>
+
+    <h2>Ejercicio 3</h2>
+    <div id="listaRest"></div>
+    <script>
+      function listaenRest(id, ...items) {
+        var html = "<ol>";
+        items.forEach(function (item) {
+          html += "<li>" + item + "</li>";
+        });
+        html += "</ol>";
+
+        document.getElementById(id).innerHTML = html;
+      }
+
+      listaenRest(
+        "listaRest",
+        "Hola",
+        "adios",
+        "bien",
+        "Hasta",
+        "mañana",
+        "algo"
+      );
+    </script>
+
+    <h2>Ejercicio 4</h2>
+    <div id="ejercicio4"></div>
+    <script>
+      var calcularTriple = function (numero) {
+        return numero * 3;
+      };
+
+      var num4 = 5;
+      document.getElementById("ejercicio4").innerHTML =
+        "El triple de " + num4 + " es: " + calcularTriple(num4);
+    </script>
+
+    <h2>Ejercicio 5</h2>
+    <div id="ejercicio5"></div>
+    <script>
+      var calcularCuadrado = (n) => n * n;
+
+      var num5 = 6;
+      document.getElementById("ejercicio5").innerHTML =
+        "El cuadrado de " + num5 + " es: " + calcularCuadrado(num5);
+    </script>
+
+    <h2>Ejercicio 6</h2>
+    <div id="ejercicio6"></div>
+    <script>
+      (() => {
+        document.getElementById("ejercicio6").innerHTML =
+          "Hola Mundo (escrito desde una función flecha autoejecutable)";
+      })();
+    </script>
+
+    <h2>Ejercicio 7</h2>
+    <div id="ejercicio7"></div>
+    <script>
+      var a = ["ola", "adios", "amalia pide muchos detalles"];
+
+      var ponerNegrita = (texto) => "<strong>" + texto + "</strong>";
+
+      var resultadoArray = a.map(ponerNegrita);
+
+      document.getElementById("ejercicio7").innerHTML =
+        "Array original: " +
+        a.join(", ") +
+        "<br>Array transformado: " +
+        resultadoArray.join(", ");
+    </script>
+
+    <h2>Ejercicio 8</h2>
+    <div id="ejercicio8"></div>
+    <script>
+      function generarTablaAleatoria() {
+        var html = "<table>";
+        for (var i = 0; i < 4; i++) {
+          html += "<tr>";
+          for (var j = 0; j < 5; j++) {
+            var azar = Math.floor(Math.random() * 10); // 0 a 9
+            html += "<td>" + azar + "</td>";
+          }
+          html += "</tr>";
+        }
+        html += "</table>";
+        return html;
+      }
+
+      document.getElementById("ejercicio8").innerHTML = generarTablaAleatoria();
+    </script>
+
+    <h2>Ejercicio 9 (Cuadrado Mágico)</h2>
+    <div id="ejercicio9"></div>
+    <script>
+      function dibujarCuadradoMagico(i) {
+        var matriz = [
+          [i + 3, i + 8, i + 1],
+          [i + 2, i + 4, i + 6],
+          [i + 7, i, i + 5],
+        ];
+
+        var html = "<table><caption>Para i = " + i + "</caption>";
+        for (var f = 0; f < 3; f++) {
+          html += "<tr>";
+          for (var c = 0; c < 3; c++) {
+            html += "<td>" + matriz[f][c] + "</td>";
+          }
+          html += "</tr>";
+        }
+        html += "</table>";
+        return html;
+      }
+
+      document.getElementById("ejercicio9").innerHTML =
+        dibujarCuadradoMagico(5);
+    </script>
+
+    <h2>Ejercicio 10 y 11</h2>
+
+    <div id="textoPrueba" class="caja-prueba">Este texto cambiará de color</div>
+    <br />
+    <label>Elige un color: </label>
+    <select id="selectorColor">
+      <option value="red">Rojo</option>
+      <option value="blue">Azul</option>
+      <option value="green">Verde</option>
+      <option value="orange">Naranja</option>
+      <option value="purple">Morado</option>
+    </select>
+
+    <button onclick="cambiarColorBtn()">Cambiar Color</button>
+
+    <script>
+      function cambiarColor(id, nombreColor) {
+        let obj = document.getElementById(id);
+        if (obj) {
+          obj.style.color = nombreColor;
+        }
+      }
+
+      function cambiarColorBtn() {
+        var colorSeleccionado = document.getElementById("selectorColor").value;
+        cambiarColor("textoPrueba", colorSeleccionado);
+      }
+    </script>
+
+    <h2>Ejercicio 12</h2>
+    <div id="ejercicio12"></div>
+    <script>
+      function factorial(valor) {
+        if (valor <= 1) {
+          return 1;
+        } else {
+          return valor * factorial(valor - 1);
+        }
+      }
+
+      var numFactorial = 5; 
+      document.getElementById("ejercicio12").innerHTML =
+        "El factorial de " + numFactorial + " es: " + factorial(numFactorial);
+    </script>
+  </body>
+</html>

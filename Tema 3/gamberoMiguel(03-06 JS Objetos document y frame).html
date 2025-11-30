@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <a href="#ej1">Enlace 1 (Anchor)</a>
+    <a href="https://google.com">Enlace 2 (Link)</a>
+    <form id="form1" name="formulario1"></form>
+    <form id="form2" name="formulario2"></form>
+    <img
+      src="https://placehold.co/100x50/blue/white?text=Img1"
+      alt="Imagen 1"
+    />
+    <img
+      src="https://placehold.co/100x50/green/white?text=Img2"
+      alt="Imagen 2"
+    />
+
+    <h2><u>Ejercicio 1</u></h2>
+    <button onclick="ejercicio1()">ejercicio1</button>
+    <pre id="resultado-1"></pre>
+    <script>
+      function ejercicio1() {
+        let salida = "";
+        const div = document.getElementById("resultado-1");
+
+        salida += `--- document.anchors (Obsoleto) ---\n`;
+        salida += `Número de anchors: ${document.anchors.length}\n`;
+
+        salida += `\n--- document.applets (Obsoleto) ---\n`;
+        salida += `Número de applets: ${document.applets.length}\n`;
+
+        salida += `\n--- document.links ---\n`;
+        salida += `Número de links: ${document.links.length}\n`;
+        for (let i = 0; i < document.links.length; i++) {
+          salida += `  Link ${i}: ${document.links[i].href}\n`;
+        }
+
+        salida += `\n--- document.forms ---\n`;
+        salida += `Número de formularios: ${document.forms.length}\n`;
+        for (let i = 0; i < document.forms.length; i++) {
+          salida += `  Form ${i}: ID = ${document.forms[i].id}\n`;
+        }
+
+        salida += `\n--- document.images ---\n`;
+        salida += `Número de imágenes: ${document.images.length}\n`;
+        for (let i = 0; i < document.images.length; i++) {
+          salida += `  Imagen ${i}: ${document.images[i].alt}\n`;
+        }
+
+        salida += `\n--- document.scripts ---\n`;
+        salida += `Número de scripts: ${document.scripts.length}\n`;
+
+        salida += `\n--- document.styleSheets ---\n`;
+        salida += `Número de hojas de estilo: ${document.styleSheets.length}\n`;
+
+        salida += `\n--- document.cookie ---\n`;
+        salida += `Cookies: ${document.cookie || "(ninguna)"}\n`;
+        console.log("Document Cookie:", document.cookie);
+
+        div.textContent = salida;
+      }
+    </script>
+
+    <h2><u>Ejercicio 2</u></h2>
+    <button onclick="ejercicio2()">Ejercicio 2</button>
+    <pre id="resultado-2"></pre>
+    <script>
+      function ejercicio2() {
+        let salida = "Resultados del Ejercicio 2:\n\n";
+
+        salida += `domain: ${document.domain}\n`;
+
+        salida += `lastModified: ${document.lastModified}\n`;
+
+        salida += `readyState: ${document.readyState}\n`;
+
+        salida += `referrer: ${document.referrer || "(ninguno)"}\n`;
+
+        salida += `title: ${document.title}\n`;
+
+        salida += `URL: ${document.URL}\n`;
+
+        document.getElementById("resultado-2").textContent = salida;
+      }
+    </script>
+
+    <h2><u>Ejercicio 3</u></h2>
+    <button onclick="ejercicio3()">Ejercicio3</button>
+    <script language="JavaScript">
+      function ejercicio3() {
+        nombre = prompt("Ingrese su nombre:", "");
+        alert("Titulo antiguo " + document.title);
+        document.title = nombre;
+        alert("Titulo nuevo " + document.title);
+      }
+    </script>
+
+    <h2><u>Ejercicio 4</u></h2>
+    <button onclick="ejercicio4()">Ejercicio 4</button>
+    <div id="etiquetatituloviejo"></div>
+    <div id="etiquetatitulonuevo"></div>
+    <script language="JavaScript">
+      function ejercicio4() {
+        const divViejo = document.getElementById("etiquetatituloviejo");
+        const divNuevo = document.getElementById("etiquetatitulonuevo");
+
+        nombre = prompt("Ingrese nuevo titulo:", "");
+
+        divViejo.innerHTML = "Titulo antiguo: " + document.title;
+
+        document.title = nombre;
+
+        divNuevo.innerHTML = "Titulo nuevo: " + document.title;
+      }
+    </script>
+
+    <h2><u>Ejercicio 5</u></h2>
+    <button onclick="ejercicio5()">Ejercicio 5</button>
+    <div id="etiquetaARellenar">(esperando...)</div>
+    <script language="JavaScript">
+      function ejercicio5() {
+        nombre = prompt("Ingrese su nombre:", "");
+
+        const divRellenar = document.getElementById("etiquetaARellenar");
+
+        divRellenar.innerHTML = "Hola, <strong>" + nombre + "</strong>";
+      }
+    </script>
+
+    <h2><u>Ejercicio 6</u></h2>
+    <p>Elemento 1: <input type="text" name="etiquetaARellenar" /></p>
+    <p>Elemento 2: <input type="text" name="etiquetaARellenar" /></p>
+    <button onclick="ejercicio6()">Ejercicio5</button>
+    <script language="JavaScript">
+      function ejercicio6() {
+        nombre = prompt("Ingrese su nombre:", "");
+
+        const coleccion = document.getElementsByName("etiquetaARellenar");
+
+        for (let i = 0; i < coleccion.length; i++) {
+          coleccion[i].value = nombre;
+        }
+      }
+    </script>
+
+    <h2>Ejercicio 7</h2>
+    <p>Muestra un elemento de la lista según el índice.</p>
+    <ol>
+      <li>Torremolinos</li>
+      <li>Málaga</li>
+      <li>Granada</li>
+      <li>Sevilla</li>
+      <li>Alhaurin</li>
+      <li>Churriana</li>
+    </ol>
+    <button onclick="ejercicio7()">Ejercicio7</button>
+    <p id="indice"></p>
+    <h2 id="lista"></h2>
+    <script>
+      function ejercicio7() {
+        numero = prompt("Ingrese el numero que deseas selecionar (1-6):", "");
+        // Convertimos el número (texto) a un entero
+        let indice = parseInt(numero);
+
+        // Validamos la entrada
+        if (indice >= 1 && indice <= 6) {
+          indice_string = "El " + numero + "º elemento de la lista es";
+
+          // 'getElementsByTagName' devuelve una colección
+          const collection = document.getElementsByTagName("li");
+
+          // Accedemos al elemento (índice - 1 porque los arrays empiezan en 0)
+          document.getElementById("lista").innerHTML =
+            collection[indice - 1].innerHTML;
+          document.getElementById("indice").innerHTML = indice_string;
+        } else {
+          alert("Número no válido. Introduce un número del 1 al 6.");
+        }
+      }
+    </script>
+
+    <h2>Ejercicio 8</h2>
+    <p>Muestra el contenido de la primera etiqueta que coincida.</p>
+    <h1>una cabecera h1</h1>
+    <h2>una cabecera h2</h2>
+    <p>Un parrafo</p>
+    <span>Torremolinos</span>
+
+    <button onclick="ejercicio8()">Ejercicio8</button>
+
+    <p id="explica"></p>
+    <h2 id="elemento"></h2>
+    <script>
+      function ejercicio8() {
+        etiqueta = prompt("Ingrese la etiqueta (p,h1,h2,span):", "");
+
+        // --- Código descomentado y activado ---
+        const collection = document.getElementsByTagName(etiqueta);
+
+        if (collection.length > 0) {
+          // Comprobar si encontró algo
+          document.getElementById("explica").innerHTML =
+            "El contenido de la primera etiqueta <code>&lt;" +
+            etiqueta +
+            "&gt;</code> es: ";
+          document.getElementById("elemento").innerHTML =
+            collection[0].innerHTML;
+        } else {
+          document.getElementById("explica").innerHTML =
+            "No se encontró ninguna etiqueta <code>&lt;" +
+            etiqueta +
+            "&gt;</code>.";
+          document.getElementById("elemento").innerHTML = "";
+        }
+      }
+    </script>
+
+    <h2>Ejercicio 9</h2>
+    <p>etiqueta1 <input type="text" name="etiqueta1" value="Guadalajara" /></p>
+    <p>etiqueta2 <input type="text" name="etiqueta2" value="Toledo" /></p>
+    <p>etiqueta3 <input type="text" name="etiqueta3" value="Cuenca" /></p>
+    <hr />
+    <button onclick="ejercicio9()">Ejercicio9</button>
+    <p id="explica-e9"></p>
+    <h2 id="elemento-e9"></h2>
+    <script language="JavaScript">
+      function ejercicio9() {
+        numero = prompt("Ingresa el numero de la etiqueta (1, 2 o 3):", "");
+
+        // Construimos el nombre de la etiqueta (ej: "etiqueta2")
+        let nombreEtiqueta = "etiqueta" + numero;
+
+        // getElementsByName devuelve una *lista*
+        let elements = document.getElementsByName(nombreEtiqueta);
+
+        // Comprobamos si la lista tiene al menos un elemento
+        if (elements.length > 0) {
+          // Obtenemos el valor del *primer* elemento encontrado
+          let valorDeEtiqueta = elements[0].value;
+
+          document.getElementById("explica-e9").innerHTML =
+            "El contenido de la etiqueta " + numero + " es: ";
+          document.getElementById("elemento-e9").innerHTML = valorDeEtiqueta;
+        } else {
+          document.getElementById("explica-e9").innerHTML =
+            "No se encontró ninguna etiqueta con el nombre '" +
+            nombreEtiqueta +
+            "'.";
+          document.getElementById("elemento-e9").innerHTML = "";
+        }
+      }
+    </script>
+  </body>
+</html>
