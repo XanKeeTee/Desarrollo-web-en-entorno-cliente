@@ -202,18 +202,32 @@
         <th>Tauro</th>
       </tr>
     </table>
+    
     <h2>ejercicio 9 tabla2</h2>
-    <script></script>
-
-    <h2>ejercicio 10 Minas</h2>
     <script>
-      const Minas = [1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1,0];
+      const minasParaJuego = [1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 0];
 
-      // aqui debes crear una tabla como la de la practica de los
-      //  colores pero el cambio en vez
-      // de ser sobre el bgcolor de la celda es para cambiar
-      // el codigo de una boton como el del ejercicio 5
-      // en cada celda debe haber un boton algo como <button onclick="alert('Es una Mina/ un Hueco')"> Mina/Hueco</button>
+      function comprobarMina(indice) {
+        if (minasParaJuego[indice] === 1) {
+          alert("Esto es una mina");
+        } else {
+          alert("Esto es un hueco");
+        }
+      }
+
+      document.write('<table border="1">');
+      let contador = 0;
+      for (let i = 0; i < 5; i++) {
+        document.write("<tr>");
+        for (let j = 0; j < 5; j++) {
+          document.write("<td>");
+          document.write('<button onclick="comprobarMina(' + contador + ')">Casilla ' + (contador + 1) + '</button>');
+          document.write("</td>");
+          contador++;
+        }
+        document.write("</tr>");
+      }
+      document.write("</table>");
     </script>
   </body>
 </html>
