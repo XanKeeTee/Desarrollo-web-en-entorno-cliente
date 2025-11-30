@@ -146,16 +146,15 @@
           "#F11",
         ];
         let salida = "<table>";
-        numero = parseInt(prompt("Digame un numero: "));
+        const numero = parseInt(prompt("Digame un numero: "));
 
         for (let i = 0; i < numero; i++) {
           salida += "<tr>";
           for (let j = 0; j < numero; j++) {
-            salida += `<td bgcolor="${colores[j]}">${j + 1}</td>`;
+            salida += `<td bgcolor="${colores[j % colores.length]}">${j + 1}</td>`;
           }
-          salida += "<tr>";
+          salida += "</tr>";
         }
-        salida += "</tr>";
         salida += "</table>";
         document.getElementById("resultado6").innerHTML = salida;
       }
