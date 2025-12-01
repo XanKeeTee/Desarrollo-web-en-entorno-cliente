@@ -35,8 +35,8 @@
         const fechaFormateada = fechaUsuario.toLocaleDateString("es-ES");
 
         document.getElementById("resultado1").innerHTML = `
-          <p>Fecha de nacimiento: ${fechaFormateada}</p>
-          <p>Días vividos: ${diasVividos.toLocaleString("es-ES")}</p>
+          <p>Fecha de nacimiento: ${fechaFormateada.toLocaleString("es-ES")}</p>
+          <p>Dias desde 1970 hasta tu fecha de nacimiento : ${diasVividos}</p>
         `;
       }
     </script>
@@ -51,30 +51,69 @@
       de segundo y milisegundos transacurridos. Debes usar el algun metodo para
       actualizar el cronometro cada segundo.
     </div>
-    <p>
-        <button onclick="iniciarCronometro()">Iniciar</button>
-        <button onclick="pararCronometro()">Parar Cronometro</button>
-    </p>
-    <div id="resultado2"></div>
-    
-    <script type="text/javascript" src="./datejs/date.js"></script>
-    <script>
-        let minutos = 0;
-        function iniciarCronometro() {
-            minutos = minutos+1;
-            var time = {hour:0, minute:minutos};
+    <div id="cronometro">
+          <span id="segundos">00</span>:<span id="milisegundos">00</span>
+        </div>
+
+        <button onclick="iniciar()">Iniciar cronometro</button>
+        <button onclick="parar()">Parar cronometro</button>
+        <button onclick="reiniciar()">Reiniciar cronometro</button>
+    </div>
+    <script>  
+          let cronometro;
+          let segundos = 0; 
+          let milisegundos = 0; 
+          let imprimirSegundos;
+          let imprimirMiliSegundos;
+          let estaCorriendo = false;
+
+          function iniciar(){
+            if(estaCorriendo == false) {
+                estaCorriendo = true;
+                cronometro = setInterval(actualizarReloj, 10);
+            }
+          }
+
+          function actualizarReloj() {
+            milisegundos++;
+
+            if (milisegundos > 99) {
+                milisegundos = 0;
+                segundos++;
+            }
             
-            const date = new Date.today().at(time);
-            const cronometro = date.toLocaleTimeString();
-            document.getElementById("resultado2").innerHTML = cronometro;
-        }
-        iniciarCronometro();
-        setInterval(iniciarCronometro, 1000);   
+            if (milisegundos < 10) {
+                imprimirMiliSegundos = "0" + milisegundos;
+            } else {
+                imprimirMiliSegundos = milisegundos;
+            }
+
+            if (segundos < 10) {
+                imprimirSegundos = "0" + segundos;
+            } else {
+                imprimirSegundos = segundos;
+            }
+
+            document.getElementById("segundos").innerText = imprimirSegundos;
+            document.getElementById("milisegundos").innerText = imprimirMiliSegundos;
+          }
+
+          function parar() {
+            clearInterval(cronometro); 
+            estaCorriendo = false;
+          }
+
+          function reiniciar() {
+            clearInterval(cronometro);
+            estaCorriendo = false;
             
-        function pararCronometro() {
-            document.getElementById("resultado2").innerHTML = `Cronometro reseteado`;
-        }
-    </script>
+            segundos = 0;
+            milisegundos = 0;
+            
+            document.getElementById("segundos").innerText = "00";
+            document.getElementById("milisegundos").innerText = "00";
+          }
+        </script>
     <hr />
     <!-- *************** -->
 
@@ -93,7 +132,7 @@
             const latitud = parseInt(prompt("Digame la latitud: "))
             const longitud = parseInt(prompt("Digame la longitud: "))
             
-            const distancia = Math.pow((latitud*latitud)+(longitud*longitud),2);
+            const distancia = parseInt(Math.sqrt(Math.pow(latitud,2)+Math.pow(longitud,2)));
 
             document.getElementById("resultado3").innerHTML = `
             <p>La distancia es de ${distancia} KM   </p>
@@ -150,18 +189,19 @@
           onclick="ejercicio5();"
         />
       </p>
-      <div id="resultado5"></div>
+      <div id="resultado5"></div> 
     <script>
-        arrayNumeros = new Array();
-        salida = `<table><tr>`:
         function ejercicio5(){
-            numero = document.getElementsByName("input5")[0].value;
-            for (let i = 0 ; i < arrayNumeros.length;i++){
-                arrayNumeros[0] = numero;
-                salida += `<td><img="./numeros2/${arrayNumeros[i]}.jpg"></td>`;
+            const numerosInput = document.getElementsByName("input5")[0].value;
+
+            const arrayNumeros = numerosInput.split(',');
+
+            let salidaHtml = '';
+
+            for (const numero of arrayNumeros) {
+                salidaHtml += `<img src="./numeros2/${numero.trim()}.jpg">`;
             }
-        salida += `</tr></table>`
-        document.getElementById("resultado5").innerHTML = salida;
+            document.getElementById("resultado5").innerHTML = salidaHtml;
         }
     </script>
     <hr />
@@ -181,9 +221,53 @@
     </div>
     <br />
     <img src="hsl.jpg" /><br />
+    <label for="colorPicker">Elige un color:</label>
+    <input type="color" id="colorPicker" value="#ff0000" onchange="ejercicio6(this.value)">
+    <div id="resultado6" style="margin-top: 10px;"></div>
     <script>
-      /* ejercicio6
-       */
+      function ejercicio6(hex) {
+        let r = parseInt(hex.substring(1, 3), 16);
+        let g = parseInt(hex.substring(3, 5), 16);
+        let b = parseInt(hex.substring(5, 7), 16);
+
+        r /= 255;
+        g /= 255;
+        b /= 255;
+
+        const max = Math.max(r, g, b);
+        const min = Math.min(r, g, b);
+
+        let h, s, l = (max + min) / 2;
+
+        if (max === min) {
+          h = s = 0; 
+        } else {
+          const d = max - min;
+          s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+
+          switch (max) {
+            case r:
+              h = (g - b) / d + (g < b ? 6 : 0);
+              break;
+            case g:
+              h = (b - r) / d + 2;
+              break;
+            case b:
+              h = (r - g) / d + 4;
+              break;
+          }
+          h /= 6;
+        }
+
+        const h_grados = Math.round(h * 360);
+        const s_porcentaje = Math.round(s * 100);
+        const l_porcentaje = Math.round(l * 100);
+
+        const resultadoDiv = document.getElementById('resultado6');
+        resultadoDiv.innerHTML = `Color Hex: ${hex}<br>RGB: (${parseInt(r*255)}, ${parseInt(g*255)}, ${parseInt(b*255)})<br><b>HSL: (${h_grados}°, ${s_porcentaje}%, ${l_porcentaje}%)</b>`;
+        resultadoDiv.style.backgroundColor = hex; // Pinta el fondo para comprobar
+        resultadoDiv.style.color = l_porcentaje > 50 ? 'black' : 'white'; // Cambia el color del texto para que sea legible
+      }
     </script>
     <hr />
     <!-- *************** -->
@@ -205,16 +289,44 @@
       carpeta number y las puedas probar.<br />
     </div>
     <button onclick="ejercicio7()">Ejercicio7</button>
+    <button onclick="rotarDerecha()">Rotar Derecha</button>
+    <button onclick="rotarIzquierda()">Rotar Izquierda</button>
     <div id="resultado7"></div>
     <script>
-        const salida = '<table><tr>'
         function ejercicio7(){
-            const numeroCartas = parseInt((Math.random() * 6)+4)
-            for (let i = 0 ; i < numeroCartas ; i++){
-                salida += `"<th><img src = "./cartas/${i}.jpg"></th>"`;
+            const numImagenes = Math.floor(Math.random() * 7) + 4; 
+            let htmlImagenes = '';
+
+            for (let i = 0; i < numImagenes; i++) {
+                const imagenAleatoria = Math.floor(Math.random() * 10);
+                htmlImagenes += `<img src="./numeros2/${imagenAleatoria}.jpg">`;
             }
-            salida += "</tr></table>";
-            document.getElementById("resultado7").innerHTML = salida;
+
+            document.getElementById("resultado7").innerHTML = htmlImagenes;
+        }
+
+        function rotarDerecha() {
+            const contenedor = document.getElementById('resultado7');
+            const imagenes = contenedor.getElementsByTagName('img');
+            if (imagenes.length < 2) return; 
+
+            const ultimoSrc = imagenes[imagenes.length - 1].src;
+
+            for (let i = imagenes.length - 1; i > 0; i--) {
+                imagenes[i].src = imagenes[i - 1].src;
+            }
+
+            imagenes[0].src = ultimoSrc;
+        }
+
+        function rotarIzquierda() {
+            const contenedor = document.getElementById('resultado7');
+            const imagenes = contenedor.getElementsByTagName('img');
+            if (imagenes.length < 2) return;
+
+            const primerSrc = imagenes[0].src;
+            contenedor.appendChild(imagenes[0]);
+            imagenes[imagenes.length - 1].src = primerSrc;
         }
     </script>
     <hr />
@@ -246,9 +358,84 @@
       4. Con el resultado debes poner la imagen correcta y y si ha ganado o
       perdido y Debes poner un boton reiniciar.<br />
     </div>
+    <button onclick="pedirCarta()">Pedir carta</button>
+    <button onclick="plantarse()">Plantarse</button>
+    <button onclick="reiniciarJuego()" id="botonReiniciar" style="display:none;">Reiniciar</button>
+
+    <h4>Tus cartas (Puntuación: <span id="puntuacionJugador">0</span>)</h4>
+    <div id="cartasJugador"></div>
+
+    <h4>Cartas de la banca (Puntuación: <span id="puntuacionBanca">0</span>)</h4>
+    <div id="cartasBanca"></div>
+
+    <h3 id="resultadoFinal"></h3>
+
     <script>
-      /* ejercicio8
-       */
+      let puntuacionJugador = 0;
+      let juegoTerminado = false;
+
+      function pedirCarta() {
+        if (juegoTerminado) return;
+
+        // 1. Sacar carta aleatoria (1-12, asumiendo que hay cartas del 1 al 12)
+        // No hay cartas 8 y 9 en la baraja española, así que las saltamos.
+        let numeroCarta;
+        do {
+          numeroCarta = Math.floor(Math.random() * 12) + 1;
+        } while (numeroCarta === 8 || numeroCarta === 9);
+
+        // 2. Calcular valor y mostrar imagen
+        let valorCarta = 0;
+        if (numeroCarta >= 10) { // Figuras (Sota, Caballo, Rey)
+          valorCarta = 0.5;
+        } else { // Cartas del 1 al 7
+          valorCarta = numeroCarta;
+        }
+
+        puntuacionJugador += valorCarta;
+        document.getElementById('cartasJugador').innerHTML += `<img src="./cartas/${numeroCarta}.jpg" style="padding:5px; height:150px;">`;
+        document.getElementById('puntuacionJugador').innerText = puntuacionJugador;
+
+        // 3. Comprobar si el jugador se ha pasado
+        if (puntuacionJugador > 7.5) {
+          document.getElementById('resultadoFinal').innerText = "¡Te has pasado de 7.5! Has perdido.";
+          document.getElementById('resultadoFinal').style.color = 'red';
+          terminarJuego();
+        }
+      }
+
+      function plantarse() {
+        if (juegoTerminado) return;
+
+        const puntuacionBanca = (Math.random() * (10 - 3) + 3).toFixed(2);
+
+        document.getElementById('puntuacionBanca').innerText = puntuacionBanca;
+        document.getElementById('cartasBanca').innerHTML = `<img src="./cartas/banca.jpg" style="padding:5px; height:150px;">`;
+
+        // Comprobar quién ha ganado
+        if (puntuacionJugador > 7.5) {
+            // Esta condición ya se maneja en pedirCarta, pero por si acaso.
+            document.getElementById('resultadoFinal').innerText = "Has perdido, te pasaste de 7.5.";
+            document.getElementById('resultadoFinal').style.color = 'red';
+        } else if (puntuacionBanca > 7.5 || puntuacionJugador > puntuacionBanca) {
+            document.getElementById('resultadoFinal').innerText = "¡Has ganado!";
+            document.getElementById('resultadoFinal').style.color = 'green';
+        } else {
+            document.getElementById('resultadoFinal').innerText = "Has perdido. La banca gana.";
+            document.getElementById('resultadoFinal').style.color = 'red';
+        }
+        terminarJuego();
+      }
+      
+      function terminarJuego() {
+        juegoTerminado = true;
+        document.getElementById('botonReiniciar').style.display = 'inline';
+      }
+
+      function reiniciarJuego() {
+        // Recarga la página para reiniciar el estado del examen completo
+        location.reload();
+      }
     </script>
     <hr />
     <!-- *************** -->
