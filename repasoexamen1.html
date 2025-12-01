@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DMiguel Angel Gambero</title>
+  </head>
+  <body>
+    <h1>Miguel Angel Gambero</h1>
+
+    <h2>Ejercicio 1</h2>
+    <button onclick="ejercicio1()">Ejercicio 1</button>
+    <div id="resultado1"></div>
+    <script>
+      function ejercicio1() {
+        const numero1 = parseInt(prompt("Digame el primer numero: "));
+        const numero2 = parseInt(prompt("Digame el segundo numero: "));
+        const numeroBinario1 = numero1.toString(2);
+        const numeroBinario2 = numero2.toString(2);
+        salida = "";
+
+        if (isNaN(numero1) || isNaN(numero2)) {
+          salida += "<p>Los valores tienen que ser numeros</p>";
+        } else {
+          const opcion = prompt("Seleccione una opcion: ");
+
+          switch (opcion) {
+            case "SUMA":
+              salida += `<p>La suma de los 2 numeros es de ${
+                numero1 + numero2
+              }</p>`;
+            case "AND":
+              salida += `<p>El AND de los 2 numeros es de ${
+                numeroBinario1 & numeroBinario2
+              }</p>`;
+
+            case "OR":
+              salida += `<p>El OR de los 2 numeros es de ${
+                numeroBinario1 | numeroBinario2
+              }</p>`;
+
+            default:
+              salida += `<p>Esa opcion no existe</p>`;
+          }
+        }
+        document.getElementById("resultado1").innerHTML = salida;
+      }
+    </script>
+
+    <h3>Ejercicio 3</h3>
+    <button onclick="ejercicio3()">Ejercicio 3</button>
+    <div id="resultado3"></div>
+
+    <script>
+      var carrito = [
+        { producto: "Monitor", precio: 200, tipo: "electrónica" },
+        { producto: "Silla", precio: 100, tipo: "mueble" },
+        { producto: "Ratón", precio: 20, tipo: "electrónica" },
+        { producto: "Mesa", precio: 150, tipo: "mueble" },
+      ];
+      function ejercicio3() {
+        let precioTotal = 0;
+        salida = `<table border="1px">`;
+        salida += `<tr><td>Producto</td><td>Precio</td><td>Tipo</td></tr>`;
+
+        for (const objeto of carrito) {
+          if (objeto.tipo == "electrónica") {
+            salida += `<tr bgcolor = "red"><td>${objeto.producto}</td><td>${objeto.precio}</td><td>${objeto.tipo}</td></tr>`;
+          } else {
+            salida += `<tr><td>${objeto.producto}</td><td>${objeto.precio}</td><td>${objeto.tipo}</td></tr>`;
+          }
+
+          precioTotal += objeto.precio;
+        }
+
+        salida += `<tr><td>El precio total es de ${precioTotal}</td</tr>`;
+        salida += `<table>`;
+        document.getElementById("resultado3").innerHTML = salida;
+      }
+    </script>
+
+    <h2>Ejercicio 4</h2>
+    <div id="cronometro">
+      <span id="minutos">00</span>:<span id="segundos">00</span>
+    </div>
+    <div id="resultado4"></div>
+
+    <div>
+      <button onclick="iniciar()">Iniciar oferta</button>
+      <button onclick="parar()">Parar oferta</button>
+    </div>
+
+    <script>
+      let cronometro;
+      let minutos = 0;
+      let segundos = 0;
+
+      let imprimirSegundos;
+      let imprimirMinutos;
+      let estaCorriendo = false;
+
+      function iniciar() {
+        if (estaCorriendo == false) {
+          estaCorriendo = true;
+          cronometro = setInterval(actualizarReloj, 1000);
+
+          let ahora = new Date();
+          document.getElementById("resultado4").innerHTML =
+            "Oferta iniciada a las " + ahora.toLocaleTimeString();
+        }
+      }
+
+      function parar() {
+        clearInterval(cronometro);
+        estaCorriendo = false;
+      }
+
+      function actualizarReloj() {
+        segundos++;
+
+        if (segundos > 59) {
+          segundos = 0;
+          minutos++;
+        }
+
+        if (segundos < 10) {
+          imprimirSegundos = "0" + segundos;
+        } else {
+          imprimirSegundos = segundos;
+        }
+
+        if (minutos < 10) {
+          imprimirMinutos = "0" + minutos;
+        } else {
+          imprimirMinutos = minutos;
+        }
+
+        document.getElementById("minutos").innerText = imprimirMinutos;
+        document.getElementById("segundos").innerText = imprimirSegundos;
+      }
+    </script>
+
+    <h2>Ejercicio 5</h2>
+    <button onclick="ejercicio5()">Ejercicio 5</button>
+    <div id="resultado5"></div>
+    <div id="resultadoPartida"></div>
+
+    <script>
+      var imagenes = [
+        "0.jpg",
+        "1.jpg",
+        "2.jpg",
+        "3.jpg",
+        "4.jpg",
+        "5.jpg",
+        "6.jpg",
+        "7.jpg",
+        "8.jpg",
+        "9.jpg",
+      ];
+
+      function ejercicio5(){
+        const numero1 = Math.floor(Math.random() * 10); 
+        const numero2 = Math.floor(Math.random() * 10);
+
+        let resultado = "";
+        
+        let salida = `<img src="./gamberoMiguel(Examen DWEC Tema 03 - 2025)/numeros2/${imagenes[numero1]}" alt="Carta jugador">`;
+        salida += `<img src="./gamberoMiguel(Examen DWEC Tema 03 - 2025)/numeros2/${imagenes[numero2]}" alt="carta casa">`;
+
+        if(numero1 > numero2){
+          resultado += "El jugador gana";
+        }else if(numero2>numero1) {
+          resultado += "La casa gana";
+        }else {
+          resultado += "Empate";
+        }
+        
+        document.getElementById("resultado5").innerHTML = salida;
+        document.getElementById("resultadoPartida").innerHTML = resultado;
+      }
+    </script>
+  </body>
+</html>

@@ -265,8 +265,8 @@
 
         const resultadoDiv = document.getElementById('resultado6');
         resultadoDiv.innerHTML = `Color Hex: ${hex}<br>RGB: (${parseInt(r*255)}, ${parseInt(g*255)}, ${parseInt(b*255)})<br><b>HSL: (${h_grados}°, ${s_porcentaje}%, ${l_porcentaje}%)</b>`;
-        resultadoDiv.style.backgroundColor = hex; // Pinta el fondo para comprobar
-        resultadoDiv.style.color = l_porcentaje > 50 ? 'black' : 'white'; // Cambia el color del texto para que sea legible
+        resultadoDiv.style.backgroundColor = hex;
+        resultadoDiv.style.color = l_porcentaje > 50 ? 'black' : 'white'; 
       }
     </script>
     <hr />
